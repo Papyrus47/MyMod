@@ -147,6 +147,8 @@ namespace MyMod.ModProj
                     StandByLinearQueue(player.Center, 60);
                 }
             }
+
+            Projectile.spriteDirection = Projectile.direction;//让他朝向和方向相同
         }
         void SimpleStandBy(Vector2 position,float speed = 0.3f)//简单待机
         {
@@ -302,8 +304,8 @@ namespace MyMod.ModProj
                 Main.EntitySpriteDraw(texture, oldcenter, rectangle, MyColor * factor,//颜色逐渐变淡
                     Projectile.oldRot[i],//弹幕轨迹上的曾经的方向
                     new Vector2(texture.Width / 2, texture.Height / 2 / Main.projFrames[Type]),
-                     new Vector2(2),
-                     SpriteEffects.None, 0);
+                    new Vector2(2),
+                    Projectile.spriteDirection == -1? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             }
             //由于tr绘制是先执行的先绘制，所以要想残影不覆盖到本体上面，就要先写残影绘制
 
@@ -317,7 +319,7 @@ namespace MyMod.ModProj
                 new Vector2(texture.Width / 2, texture.Height / 2 / Main.projFrames[Type]),
                 //第六个参数是贴图参照原点的坐标，这里写为贴图单帧的中心坐标，这样旋转和缩放都是围绕中心
                 new Vector2(2),//第七个参数是缩放，X是水平倍率，Y是竖直倍率
-                SpriteEffects.None,
+                Projectile.spriteDirection == -1? SpriteEffects.FlipHorizontally : SpriteEffects.None,
                 //第八个参数是设置图片翻转效果，需要手动判定并设置spriteeffects
                 0//第九个参数是绘制层级，但填0就行了，不太好使
                 );

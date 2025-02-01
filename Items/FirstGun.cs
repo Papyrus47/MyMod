@@ -19,8 +19,8 @@ namespace MyMod.Items
 			Item.damage = 65;//物品的基础伤害
 			Item.crit = 20;//物品的暴击率
 			Item.DamageType = DamageClass.Ranged;//物品的伤害类型
-			Item.width = 40;//物品以掉落物形式存在的碰撞箱宽度
-			Item.height = 40;//物品以掉落物形式存在的碰撞箱高度
+			Item.width = 88;//物品以掉落物形式存在的碰撞箱宽度
+			Item.height = 38;//物品以掉落物形式存在的碰撞箱高度
 			Item.useTime = 5;//物品一次使用所经历的时间（以帧为单位）(正常情况1秒60帧)
 			Item.shoot = ProjectileID.BlackBolt;//物品发射的弹幕ID(玛瑙炮)
 			Item.shootSpeed = 24f;//物品发射的弹幕速度（像素/帧）（一个物块长16像素）

@@ -45,11 +45,7 @@ namespace MyMod.NPCs //这是一个自定义AI的史莱姆NPC
 			Main.npcFrameCount[NPC.type] = 6; // make sure to set this for your modnpcs.
 
 			// Specify the debuffs it is immune to
-			NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData {
-				SpecificallyImmuneTo = new int[] {
-					BuffID.Poisoned // This NPC will be immune to the Poisoned debuff.
-				}
-			});
+			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 		}
 
 		public override void SetDefaults() {

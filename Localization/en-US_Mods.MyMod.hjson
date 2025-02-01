@@ -115,6 +115,16 @@ Items: {
 		DisplayName: Test Render
 		Tooltip: ""
 	}
+
+	FirstAccessories: {
+		DisplayName: First Accessories
+		Tooltip: ""
+	}
+
+	TestRender2: {
+		DisplayName: Test Render2
+		Tooltip: ""
+	}
 }
 
 NPCs: {

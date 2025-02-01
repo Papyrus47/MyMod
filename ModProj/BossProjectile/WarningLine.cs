@@ -94,11 +94,11 @@ namespace MyMod.ModProj.BossProjectile
         {
             //这个弹幕没有行为
         }
-        public override void Kill(int timeLeft)//弹幕死亡时生成一个激光
+        public override void OnKill(int timeLeft)//弹幕死亡时生成一个激光
         {
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
                 Projectile.velocity, ModContent.ProjectileType<BossDeathRay>(), 25, 1, Main.myPlayer);
-            base.Kill(timeLeft);
+            base.OnKill(timeLeft);
         }
         public override bool PreDraw(ref Color lightColor)//predraw返回false即可禁用原版绘制
         {
@@ -148,12 +148,12 @@ namespace MyMod.ModProj.BossProjectile
                 Projectile.active = false;//其他的情况不符合正常情况，直接舍去，灭活该弹幕。
             }
         }
-        public override void Kill(int timeLeft)//弹幕死亡时生成一个激光
+        public override void OnKill(int timeLeft)//弹幕死亡时生成一个激光
         {
             SoundEngine.PlaySound(SoundID.Zombie104, Projectile.Center);
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
                 Projectile.rotation.ToRotationVector2(), ModContent.ProjectileType<BossDeathRay_2>(), 25, 1, Main.myPlayer);
-            base.Kill(timeLeft);
+            base.OnKill(timeLeft);
         }
         public override bool PreDraw(ref Color lightColor)//predraw返回false即可禁用原版绘制
         {
