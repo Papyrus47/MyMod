@@ -1,3 +1,4 @@
 这是一个以教学mod制作为主题的教学mod，具体请参看源码
 作者：B站@我在风中凌乱啊
+上传github作者：B站@全然不信Papyru
 部分代码来自：ExampleMod，FargosSouls，TetradBossFight
