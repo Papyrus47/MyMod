@@ -1,0 +1,4 @@
+本编译器可以编译3.0的pixelshader
+只需要把fx文件放入effects里然后双击exe
+就可以在effects里找到xnb
+（注意：有些方法过不了编译，已知的有fmod(取余)，需要你手搓一个取余函数）

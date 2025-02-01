@@ -1,0 +1,3 @@
+displayName = 教程MOD
+author = B站@我在风中凌乱啊
+version = 0.1.1

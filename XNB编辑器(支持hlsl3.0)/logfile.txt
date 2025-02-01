@@ -1,0 +1,161 @@
+Message at 2023/2/17 20:23:28: Importing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/2/17 20:23:28: Processing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/2/17 20:23:29: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\Skyeff.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(76,12): error X3025: global variables are implicitly constant, enable compatibility mode to allow modification
+Message at 2023/2/17 20:25:29: Importing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/2/17 20:25:29: Processing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/2/17 20:25:29: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\Skyeff.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(26,35): error X3004: undeclared identifier 'ltTime'
+Message at 2023/2/17 20:31:52: Importing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/2/17 20:31:52: Processing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/2/17 20:31:52: Compiling Skyeff.xnb
+Message at 2023/2/17 21:07:56: Importing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/2/17 21:07:56: Processing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/2/17 21:07:56: Compiling Skyeff.xnb
+Message at 2023/2/17 21:16:28: Importing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/2/17 21:16:28: Processing Skyeff.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/2/17 21:16:28: Compiling Skyeff.xnb
+Message at 2023/8/4 9:08:18: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/4 9:08:18: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/4 9:08:18: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\Thunder.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(12,41): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/8/4 9:09:16: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/4 9:09:16: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/4 9:09:16: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\Thunder.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(13,27): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/8/4 9:10:27: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/4 9:10:27: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/4 9:10:27: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\Thunder.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(70,12): error X3025: global variables are implicitly constant, enable compatibility mode to allow modification
+Message at 2023/8/4 9:12:50: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/4 9:12:50: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/4 9:12:50: Compiling Thunder.xnb
+Message at 2023/8/4 16:48:23: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/4 16:48:23: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/4 16:48:23: Compiling Thunder.xnb
+Message at 2023/8/25 17:23:00: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:23:00: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:23:00: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+ID3DXEffectCompiler: There were no techniques
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:23:56: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:23:56: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:23:56: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(62,23): error X3004: undeclared identifier 'DiscoVortex'
+Message at 2023/8/25 17:24:25: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:24:25: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:24:25: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(62,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:24:31: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:24:31: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:24:31: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(62,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:26:14: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:26:14: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:26:14: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(62,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:29:24: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:29:24: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:29:24: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(58,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:30:01: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:30:01: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:30:01: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(58,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:31:39: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:31:39: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:31:39: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:31:39: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:31:39: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:31:39: Compiling Thunder.xnb
+Message at 2023/8/25 17:35:38: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:35:38: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:35:38: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(58,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:37:47: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:37:47: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:37:47: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(58,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:38:53: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:38:53: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:38:53: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:38:53: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:38:53: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:38:53: Compiling Thunder.xnb
+Message at 2023/8/25 17:39:56: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:39:57: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:39:57: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:39:57: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:39:57: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:39:57: Compiling Thunder.xnb
+Message at 2023/8/25 17:40:28: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:40:28: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:40:28: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(52,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:42:04: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:42:04: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/25 17:42:04: Errors compiling C:\Users\86183\Desktop\XNB编辑器(支持hlsl3.0)\Effects\DiscoVortex.fx:
+C:\Users\86183\Desktop\XNB????(???hlsl3.0)\memory(52,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/25 17:42:24: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:42:24: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:42:24: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:42:24: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:42:24: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:42:24: Compiling Thunder.xnb
+Message at 2023/8/25 17:44:23: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:44:23: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:44:23: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:44:23: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:44:23: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:44:23: Compiling Thunder.xnb
+Message at 2023/8/25 17:49:28: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:49:28: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:49:28: Compiling DiscoVortex.xnb
+Message at 2023/8/25 17:49:28: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 17:49:28: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 17:49:28: Compiling Thunder.xnb
+Message at 2023/8/25 18:17:45: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 18:17:45: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 18:17:45: Compiling DiscoVortex.xnb
+Message at 2023/8/25 18:17:45: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 18:17:45: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 18:17:45: Compiling Thunder.xnb
+Message at 2023/8/25 18:29:59: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 18:30:00: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 18:30:00: Compiling DiscoVortex.xnb
+Message at 2023/8/25 18:30:00: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 18:30:00: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 18:30:00: Compiling Thunder.xnb
+Message at 2023/8/25 19:01:52: Importing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 19:01:52: Processing DiscoVortex.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 19:01:52: Compiling DiscoVortex.xnb
+Message at 2023/8/25 19:01:52: Importing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 19:01:52: Processing Thunder.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 19:01:52: Compiling Thunder.xnb
+Message at 2023/9/15 17:20:49: Importing RTShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 17:20:49: Processing RTShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 17:20:49: Compiling RTShader.xnb
+Message at 2023/9/15 17:47:07: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 17:47:07: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 17:47:07: Compiling DistortShader.xnb
+Message at 2023/9/15 18:29:25: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 18:29:25: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 18:29:25: Compiling DistortShader.xnb
+Message at 2023/9/15 20:13:18: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 20:13:18: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 20:13:18: Compiling DistortShader.xnb
+Message at 2023/9/15 20:28:41: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 20:28:41: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 20:28:41: Compiling DistortShader.xnb
+Message at 2023/9/15 20:48:00: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/15 20:48:00: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/15 20:48:00: Compiling DistortShader.xnb

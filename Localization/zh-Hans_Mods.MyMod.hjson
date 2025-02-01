@@ -1,0 +1,161 @@
+Buffs: {
+	FirstBuff: {
+		DisplayName: First Buff
+		Description: Mods.MyMod.Buffs.FirstBuff.Description
+	}
+
+	MinionBuff: {
+		DisplayName: Minion Buff
+		Description: Mods.MyMod.Buffs.MinionBuff.Description
+	}
+
+	NPCdebuff: {
+		DisplayName: N P Cdebuff
+		Description: Mods.MyMod.Buffs.NPCdebuff.Description
+	}
+
+	PlayerDebuff: {
+		DisplayName: Player Debuff
+		Description: Mods.MyMod.Buffs.PlayerDebuff.Description
+	}
+}
+
+Items: {
+	FirstGun: {
+		DisplayName: First Gun
+		Tooltip: ""
+	}
+
+	FirstMagicStaff: {
+		DisplayName: 第一把法杖
+		Tooltip:
+			'''
+			这三个英文单引号可以进行多行文本输入
+			例如像这样
+			'''
+	}
+
+	FirstSword: {
+		DisplayName: 第一把剑
+		Tooltip: 这是你的第一把剑
+	}
+
+	MyChargeGun: {
+		DisplayName: My Charge Gun
+		Tooltip: ""
+	}
+
+	MyRod: {
+		DisplayName: My Rod
+		Tooltip: ""
+	}
+
+	RayWeapon: {
+		DisplayName: Ray Weapon
+		Tooltip: ""
+	}
+
+	SecondGun: {
+		DisplayName: Second Gun
+		Tooltip: ""
+	}
+
+	SecondMagicStaff: {
+		DisplayName: Second Magic Staff
+		Tooltip: ""
+	}
+
+	SecondSword: {
+		DisplayName: Second Sword
+		Tooltip: ""
+	}
+
+	SoulAmmo: {
+		DisplayName: Soul Ammo
+		Tooltip: ""
+	}
+
+	SoulAmmo2: {
+		DisplayName: Soul Ammo2
+		Tooltip: ""
+	}
+
+	SummonStaff: {
+		DisplayName: Summon Staff
+		Tooltip: ""
+	}
+
+	TempleBullet: {
+		DisplayName: Temple Bullet
+		Tooltip: ""
+	}
+
+	ParticleWeapon: {
+		DisplayName: Particle Weapon
+		Tooltip: ""
+	}
+
+	TextWeapon_Combat: {
+		DisplayName: Text Weapon_ Combat
+		Tooltip: ""
+	}
+
+	TextWeapon_Draw: {
+		DisplayName: Text Weapon_ Draw
+		Tooltip: ""
+	}
+
+	TextWeapon_Popup: {
+		DisplayName: Text Weapon_ Popup
+		Tooltip: ""
+	}
+
+	NewSword: {
+		// DisplayName: New Sword
+		// Tooltip: ""
+	}
+
+	TestRender: {
+		// DisplayName: Test Render
+		// Tooltip: ""
+	}
+}
+
+NPCs: {
+	CloneZombie.DisplayName: Clone Zombie
+	CustomSlime.DisplayName: Custom Slime
+	PrimaryBoss.DisplayName: Primary Boss
+}
+
+Prefixes: {
+	无界.DisplayName: 无界
+	这是前缀名.DisplayName: 这是前缀名
+	// AccPrefix.DisplayName: Acc Prefix
+	// FirstPrefix.DisplayName: First Prefix
+}
+
+Projectiles: {
+	AdvancedProj.DisplayName: Advanced Proj
+	BigDeathRay.DisplayName: Big Death Ray
+	BossDeathRay.DisplayName: Boss Death Ray
+	BossDeathRay_2.DisplayName: Boss Death Ray_2
+	HostileProj_0.DisplayName: Hostile Proj_0
+	HostileProj_1.DisplayName: Hostile Proj_1
+	HostileProj_2.DisplayName: Hostile Proj_2
+	RoundLight.DisplayName: Round Light
+	RoundLight2.DisplayName: Round Light2
+	TutorialFlame.DisplayName: Tutorial Flame
+	WarningLine.DisplayName: Warning Line
+	WarningLine_2.DisplayName: Warning Line_2
+	WarningLine_3.DisplayName: Warning Line_3
+	DeathRay.DisplayName: Death Ray
+	MinionProj.DisplayName: Minion Proj
+	MoveProj.DisplayName: Move Proj
+	MyGunProj.DisplayName: My Gun Proj
+	MyMinion.DisplayName: My Minion
+	MyRodProj.DisplayName: My Rod Proj
+	TempleProj.DisplayName: Temple Proj
+	// MySwordProj.DisplayName: My Sword Proj
+	// RenderDistort.DisplayName: Render Distort
+	// RenderGap.DisplayName: Render Gap
+}
