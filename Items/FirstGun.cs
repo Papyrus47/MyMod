@@ -29,7 +29,10 @@ namespace MyMod.Items
 			Item.knockBack = 2;//物品击退
 			Item.value = Item.buyPrice(1,22,0,0);//价值  buyprice方法可以直接设置成直观的钱币数
 			Item.rare = ItemRarityID.Pink;//稀有度
-			Item.UseSound = SoundID.Item22;//使用时的声音
+			Item.UseSound = SoundID.Item22 with
+			{
+				MaxInstances = 114 //最大实例数
+			};//使用时的声音
 			Item.autoReuse = true;//自动连发
 			//以下是武器进阶属性
 			Item.noUseGraphic = false;//为true时会隐藏物品使用动画
@@ -44,14 +47,28 @@ namespace MyMod.Items
 			//Dust.NewDust(hitbox.TopLeft(), hitbox.Width, hitbox.Height, DustID.Torch, 0, 0, 0, default, 2);
             base.MeleeEffects(player, hitbox);
         }
+        public override Vector2? HoldoutOffset()
+        {
+            // 允许你确定玩家在使用投射物武器时，手握住的武器精灵图上的偏移量。
+            // 这仅用于使用样式（useStyle）为5的物品。返回null以使用默认的偏移量；默认返回null。
+            return new Vector2(-18,-2);
+        }
+
+        public override Vector2? HoldoutOrigin()
+        {
+            //允许你确定玩家在使用此物品时，手握住的物品精灵图上的点。原点是从精灵图的左下角开始。这仅用于使用样式（useStyle）为5的法杖。返回null以使用默认的原点（零）；默认返回null。
+            return base.HoldoutOrigin();
+        }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 			player.AddBuff(ModContent.BuffType<Buffs.FirstBuff>(), 200);
-			//本函数用于在武器执行发射弹幕时的操作，返回false可阻止武器原本的发射。true则保留。
-			for(int i = -2;i <= 2; i++)
+            //本函数用于在武器执行发射弹幕时的操作，返回false可阻止武器原本的发射。true则保留。
+            position += velocity.RotatedBy(0.15).SafeNormalize(default) * 80; // 修改发射子弹的位置,+velocity 是为发射位置修正
+            for (int i = -2;i <= 2; i++)
             {
-				float rotation = (float)i * (MathHelper.Pi / 6);//循环中，让这个偏转角度为-2 * 30度到2 * 30度
-				Projectile.NewProjectile(source, position, velocity.RotatedBy(rotation),
+				float rotation = MathHelper.ToRadians(7.5f * i); // 计算子弹的旋转角度,-15~15度为一个子弹的旋转角度
+
+                Projectile.NewProjectile(source, position, velocity.RotatedBy(rotation),
 					type == ProjectileID.Bullet ? ProjectileID.BlackBolt : type //若子弹为火枪子弹，则换为黑玛瑙，其他子弹保留
 					//type是当前消耗子弹的弹幕ID，不想让他射子弹对应的弹幕，可以改掉它。
 					, damage, knockback, player.whoAmI) ;

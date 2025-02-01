@@ -1,7 +1,7 @@
 Buffs: {
 	FirstBuff: {
 		DisplayName: First Buff
-		Description: Mods.MyMod.Buffs.FirstBuff.Description
+		Description: Increases maximum life and maximum mana
 	}
 
 	MinionBuff: {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,22 +37,13 @@ namespace MyMod.Items.Accessories
             player.GetDamage(DamageClass.Generic) += 0.1f; // 提升玩家伤害10%
             player.statLifeMax2 += 100; // 增加玩家最大生命值100
             player.statDefense.AdditiveBonus += 0.1f; // 提升玩家护甲10%
-            player.accRunSpeed *= 1.2f; // 增加玩家最大速度20%
-            if(hideVisual)
+            player.accRunSpeed *= 1.3f; // 增加玩家最大速度30%
+            if (hideVisual)
             {
-                // 隐藏时候，额外增加10%伤害，增加100生命值，提升10%护甲，最大速度100%
-                player.GetDamage(DamageClass.Generic) += 0.1f;
+                // 隐藏饰品时,额外提升最大生命值100，增加护甲10%，提升最大速度20%
                 player.statLifeMax2 += 100;
                 player.statDefense.AdditiveBonus += 0.1f;
-                player.accRunSpeed *= 2f;
-            }
-            else
-            {
-                // 显示时候，额外增加20%伤害，增加200生命值，提升20%护甲，最大速度200%
-                player.GetDamage(DamageClass.Generic) += 0.2f;
-                player.statLifeMax2 += 200;
-                player.statDefense.AdditiveBonus += 0.2f;
-                player.accRunSpeed *= 3f;
+                player.accRunSpeed *= 1.2f;
             }
         }
     }

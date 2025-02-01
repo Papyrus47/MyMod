@@ -1,11 +1,11 @@
 Buffs: {
 	FirstBuff: {
-		DisplayName: First Buff
-		Description: Mods.MyMod.Buffs.FirstBuff.Description
+		DisplayName: 第一个Buff
+		Description: 提升生命上限与魔力上限
 	}
 
 	MinionBuff: {
-		DisplayName: Minion Buff
+		DisplayName: 召唤物Buff
 		Description: Mods.MyMod.Buffs.MinionBuff.Description
 	}
 
