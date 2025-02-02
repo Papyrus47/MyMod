@@ -1,14 +1,15 @@
-﻿global using Terraria.Graphics.Effects;
+﻿global using Terraria.Graphics.Effects;//写shader和rt都得using这个
 global using Terraria.ModLoader;
 global using Terraria;
 global using Microsoft.Xna.Framework.Graphics;//该命名空间包含了使用XNA框架进行图形渲染所需的类和方法。通过导入这个命名空间，可以在代码中使用XNA框架提供的图形渲染功能
 global using Microsoft.Xna.Framework;//使用向量/颜色等都需要这个
-using Terraria.Graphics.Effects;//写shader和rt都得using这个
 using Terraria.GameContent;
+using MyMod.Content.Dusts;
+using MyMod.Content.ModProj;
 
 namespace MyMod
 {
-	public class MyMod : Mod
+    public class MyMod : Mod
 	{
 
         public override void Load()//模组加载时执行
@@ -77,7 +78,7 @@ namespace MyMod
             gd.SetRenderTarget(render);//切换到我们自己的RT
             gd.Clear(Color.Transparent);//先把RT清空成透明
             sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            Dusts.RenderDust.DrawAll(sb);//调用我们在那个粒子里写的静态方法，把所有的粒子绘制到我们的RT上面来
+            RenderDust.DrawAll(sb);//调用我们在那个粒子里写的静态方法，把所有的粒子绘制到我们的RT上面来
             sb.End();//结束，这时候我们有了一张只画了粒子在上面,其余部分全是透明的"屏幕"
                      //切记，如果你想做很多个这样的粒子，不要像我这样遍历粒子来绘制，而是用List去存储粒子的索引，遍历list去绘制粒子
 
@@ -107,7 +108,7 @@ namespace MyMod
             gd.SetRenderTarget(render);//切换到我们自己的RT
             gd.Clear(Color.Transparent);//先把RT清空成透明
             sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None,Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-            ModProj.RenderDistort.DrawAllDistortProjectile(sb);//把所有的扭曲球弹幕绘制到我们的RT上面来
+            RenderDistort.DrawAllDistortProjectile(sb);//把所有的扭曲球弹幕绘制到我们的RT上面来
             sb.End();//结束，这时候我们有了一张只画了扭曲素材图在上面,其余部分全是透明的"屏幕"
           
 
@@ -126,7 +127,7 @@ namespace MyMod
             #region 空间割裂
             //有时候我们只需要一个特效弹幕，而非多个，就不要老是遍历了，直接用索引
             Projectile projectile = Main.projectile[GapEffectProj];
-            if (projectile.type == ModContent.ProjectileType<ModProj.RenderGap>() && projectile.active)//取得这个弹幕符合条件就绘制
+            if (projectile.type == ModContent.ProjectileType<RenderGap>() && projectile.active)//取得这个弹幕符合条件就绘制
             {
                 //利用RT+shader制作一个"空间割裂"的效果,这次我们还可以利用上一个扭曲用的shader
                 //原理还是和扭曲差不多，与扭曲不同，这次我们真的要将屏幕“劈开”，也就是说我们要将整个屏幕都按照素材图进行扭曲

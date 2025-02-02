@@ -9,5 +9,6 @@
     <None Remove="Localization\zh-Hans_Mods.MyMod.hjson" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
 </Project>

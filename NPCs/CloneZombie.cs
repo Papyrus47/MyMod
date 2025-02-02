@@ -23,11 +23,16 @@ namespace MyMod.NPCs // 命名空间咱们写文件夹路径
 
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				// 影响僵尸在生物图鉴中的外观
+			// 原先方法不再使用
+			//NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+			//	// 影响僵尸在生物图鉴中的外观
+			//	Velocity = 1f // 在生物图鉴中NPC以+1图格的速度前进（向右）
+			//};
+			//NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers()
+			{
 				Velocity = 1f // 在生物图鉴中NPC以+1图格的速度前进（向右）
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			});
 		}
 
 		public override void SetDefaults() {
@@ -62,9 +67,9 @@ namespace MyMod.NPCs // 命名空间咱们写文件夹路径
 		}
 
 		public override void AI() {
-			if (Main.netMode == NetmodeID.MultiplayerClient) {
+			if (Main.netMode == NetmodeID.MultiplayerClient) // 目的：为了不让NPC的AI在多人模式下的个人客户端中运行
 				return;
-			}
+			
 
 			Rectangle hitbox = NPC.Hitbox;
 			foreach (Item item in Main.item) {

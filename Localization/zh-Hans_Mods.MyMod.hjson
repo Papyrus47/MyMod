@@ -122,7 +122,14 @@ Items: {
 
 	FirstAccessories: {
 		// DisplayName: First Accessories
-		// Tooltip: ""
+		/* Tooltip:
+			'''
+			提升{0}%的伤害
+			提升最大生命值{1}%
+			提升玩家护甲{2}%
+			增加玩家最大速度{3}%
+			隐藏有额外效果
+			''' */
 	}
 
 	TestRender2: {
