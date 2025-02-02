@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MyMod.Content.ModProj;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -20,7 +21,7 @@ namespace MyMod.Buffs//命名空间要和文件夹路径一样
 		public override void Update(Player player, ref int buffIndex)
 		{
 			// 如果召唤物存在，那么延长buff时间，否则删除BUFF
-			if (player.ownedProjectileCounts[ModContent.ProjectileType<MyMod.Content.ModProj.MyMinion>()] > 0)//检测玩家持有的弹幕数量
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<MyMinion>()] > 0)//检测玩家持有的弹幕数量
 			{
 				player.buffTime[buffIndex] = 18000;
 			}

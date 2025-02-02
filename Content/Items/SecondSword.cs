@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MyMod.Buffs;
+using MyMod.Content.DamageClasses;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
@@ -8,6 +9,9 @@ using Terraria.ModLoader;
 
 namespace MyMod.Content.Items
 {
+    /// <summary>
+    /// 演示了伤害类型修改
+    /// </summary>
     public class SecondSword : ModItem
     {
         public override void SetStaticDefaults()
@@ -19,7 +23,7 @@ namespace MyMod.Content.Items
         public override void SetDefaults()
         {
             Item.damage = 100;
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = ModContent.GetInstance<FristDamageClass>(); // 伤害类型获取为自己的伤害类型
             Item.width = 40;
             Item.height = 40;
             Item.useTime = 20;
@@ -42,8 +46,7 @@ namespace MyMod.Content.Items
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-
-            SkyManager.Instance.Activate("BlackSky");
+            //SkyManager.Instance.Activate("BlackSky"); 这行鬼代码是什么玩意
             target.AddBuff(ModContent.BuffType<NPCdebuff>(), 100);//对NPC上Debuff
             //NPC(player, target, damage, knockBack, crit);
         }

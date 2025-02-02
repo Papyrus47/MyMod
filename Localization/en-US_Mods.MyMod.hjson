@@ -172,3 +172,5 @@ Projectiles: {
 	RenderDistort.DisplayName: Render Distort
 	RenderGap.DisplayName: Render Gap
 }
+
+DamageClasses.FristDamageClass.DisplayName: Frist Damage Class

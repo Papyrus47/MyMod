@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MyMod.Content.Dusts;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -44,7 +45,7 @@ namespace MyMod.Content.Items
         }
         public override void HoldItem(Player player)
         {
-            Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<MyMod.Content.Dusts.RenderDust>(), 0, 0, 0, Color.White, 1);
+            Dust.NewDust(player.position, player.width, player.height, ModContent.DustType<RenderDust>(), 0, 0, 0, Color.White, 1);
             //生成RT粒子在玩家身上，当然这是范例，你可以自己随意生成
             base.HoldItem(player);
         }

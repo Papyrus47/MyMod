@@ -464,7 +464,7 @@ namespace MyMod.NPCs // 命名空间咱们写文件夹路径
                             if(NPC.ai[0] % 15 == 0)//每1/4秒
                             {
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
-                                    ModContent.ProjectileType<MyMod.Content.ModProj.BossProjectile.RoundLight>(), 0, 0, Main.myPlayer);
+                                    ModContent.ProjectileType<RoundLight>(), 0, 0, Main.myPlayer);
                                 //释放一次光效弹幕
                                 int randomHeal = Main.rand.Next(1500, 2000);//1500到1999的随机数
                                 randomHeal += NPC.lifeMax / 100;//在这个基础上增加最大生命值的1%
@@ -859,7 +859,7 @@ namespace MyMod.NPCs // 命名空间咱们写文件夹路径
                 Main.LocalPlayer.GetModPlayer<ScreenMovePlayer>().ScreenShakeScale = 12;//震动12
                 Main.LocalPlayer.GetModPlayer<ScreenMovePlayer>().ScreenShakeTimer = 40;//持续40帧
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
-                                      ModContent.ProjectileType<MyMod.Content.ModProj.BossProjectile.RoundLight>(), 0, 0, Main.myPlayer);
+                                      ModContent.ProjectileType<RoundLight>(), 0, 0, Main.myPlayer);
                 //释放一次光效弹幕
             }
             base.HitEffect(hit);

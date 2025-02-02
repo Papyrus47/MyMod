@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,21 +16,22 @@ namespace MyMod.Content.Items
         }
         public override void SetDefaults()
         {
+            const int USETIME = 30;
             //以下是武器物品的基本属性
             Item.damage = 65;//物品的基础伤害
             Item.crit = 20;//物品的暴击率
             Item.DamageType = DamageClass.Ranged;//物品的伤害类型
             Item.width = 88;//物品以掉落物形式存在的碰撞箱宽度
             Item.height = 38;//物品以掉落物形式存在的碰撞箱高度
-            Item.useTime = 5;//物品一次使用所经历的时间（以帧为单位）(正常情况1秒60帧)
+            Item.useTime = USETIME;//物品一次使用所经历的时间（以帧为单位）(正常情况1秒60帧)
             Item.shoot = ProjectileID.BlackBolt;//物品发射的弹幕ID(玛瑙炮)
             Item.shootSpeed = 24f;//物品发射的弹幕速度（像素/帧）（一个物块长16像素）
-            Item.useAnimation = 5;//物品播放使用动画所经历的时间
+            Item.useAnimation = USETIME;//物品播放使用动画所经历的时间
             Item.useStyle = ItemUseStyleID.Shoot;//使用动作 swing为挥舞 shoot为射击
             Item.knockBack = 2;//物品击退
             Item.value = Item.buyPrice(1, 22, 0, 0);//价值  buyprice方法可以直接设置成直观的钱币数
             Item.rare = ItemRarityID.Pink;//稀有度
-            Item.UseSound = SoundID.Item22 with
+            Item.UseSound = SoundID.Item11 with
             {
                 MaxInstances = 114 //最大实例数
             };//使用时的声音
@@ -69,6 +71,31 @@ namespace MyMod.Content.Items
         public override void OnConsumeAmmo(Item ammo, Player player)
         {
             // 消耗弹药时触发的操作。
+        }
+        /// <summary>
+        /// 在玩家使用物品时触发的操作
+        /// 允许玩家修改旋转角度与位置
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="heldItemFrame"></param>
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        {
+            base.UseStyle(player, heldItemFrame);
+            float factor = (float)player.itemAnimation / player.itemAnimationMax;
+            factor = MathF.Pow(factor, 5f);
+            player.itemRotation -= factor * player.direction * MathHelper.PiOver4 * 0.25f; // 修改玩家旋转角度
+        }
+        /// <summary>
+        /// 在玩家持有物品时触发的操作
+        /// 允许玩家修改旋转角度与位置
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="heldItemFrame"></param>
+        public override void HoldStyle(Player player, Rectangle heldItemFrame)
+        {
+            base.HoldStyle(player, heldItemFrame);
+            //player.bodyFrame = heldItemFrame;
+            player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, player.velocity.X / 10f);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

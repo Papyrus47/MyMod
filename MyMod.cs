@@ -28,8 +28,8 @@ namespace MyMod
             On_FilterManager.EndCapture += On_FilterManager_EndCapture;//重点在这，这里是原版所有滤镜处理结束后时的函数，我们把RT绘制插在这里
 
             //load时读取shader
-            RTShader = ModContent.Request<Effect>("MyMod/Effects/RTShader", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;//拿一下这个shader
-            DistortShader = ModContent.Request<Effect>("MyMod/Effects/DistortShader",
+            RTShader = ModContent.Request<Effect>("MyMod/Assets/Effects/RTShader", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;//拿一下这个shader
+            DistortShader = ModContent.Request<Effect>("MyMod/Assets/Effects/DistortShader",
                 ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             base.Load();
         }

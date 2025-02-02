@@ -10,7 +10,7 @@ Buffs: {
 	}
 
 	NPCdebuff: {
-		DisplayName: N P Cdebuff
+		DisplayName: NPC的Debuff
 		Description: Mods.MyMod.Buffs.NPCdebuff.Description
 	}
 
@@ -22,7 +22,7 @@ Buffs: {
 
 Items: {
 	FirstGun: {
-		DisplayName: First Gun
+		DisplayName: 第一把枪
 		Tooltip: ""
 	}
 
@@ -41,83 +41,87 @@ Items: {
 	}
 
 	MyChargeGun: {
-		DisplayName: My Charge Gun
+		DisplayName: 第一个蓄力枪
 		Tooltip: ""
 	}
 
 	MyRod: {
-		DisplayName: My Rod
+		DisplayName: 第一个魔法导弹
 		Tooltip: ""
 	}
 
 	RayWeapon: {
-		DisplayName: Ray Weapon
+		DisplayName: 激光武器
 		Tooltip: ""
 	}
 
 	SecondGun: {
-		DisplayName: Second Gun
+		DisplayName: 第二把枪
 		Tooltip: ""
 	}
 
 	SecondMagicStaff: {
-		DisplayName: Second Magic Staff
+		DisplayName: 第二把魔法杖
 		Tooltip: ""
 	}
 
 	SecondSword: {
-		DisplayName: Second Sword
-		Tooltip: ""
+		DisplayName: 第二把剑
+		Tooltip:
+			'''
+			演示了伤害类型修改
+			进阶弹幕绘制示例以及buff示例
+			'''
 	}
 
 	SoulAmmo: {
-		DisplayName: Soul Ammo
+		DisplayName: 灵魂子弹
 		Tooltip: ""
 	}
 
 	SoulAmmo2: {
-		DisplayName: Soul Ammo2
+		DisplayName: 灵魂子弹2
 		Tooltip: ""
 	}
 
 	SummonStaff: {
-		DisplayName: Summon Staff
+		DisplayName: 第一把召唤杖
 		Tooltip: ""
 	}
 
 	TempleBullet: {
-		DisplayName: Temple Bullet
+		DisplayName: 神庙子弹
 		Tooltip: ""
 	}
 
 	ParticleWeapon: {
-		DisplayName: Particle Weapon
+		DisplayName: 粒子演示武器
 		Tooltip: ""
 	}
 
 	TextWeapon_Combat: {
-		DisplayName: Text Weapon_ Combat
+		DisplayName: 演示武器_CombatText
 		Tooltip: ""
 	}
 
 	TextWeapon_Draw: {
-		DisplayName: Text Weapon_ Draw
+		DisplayName: 演示武器_Draw
 		Tooltip: ""
 	}
 
 	TextWeapon_Popup: {
-		DisplayName: Text Weapon_ Popup
+		DisplayName: 演示武器_PopupText
 		Tooltip: ""
 	}
 
 	NewSword: {
-		// DisplayName: New Sword
-		// Tooltip: ""
+		DisplayName: 新的剑
+		Tooltip: 进阶剑,本剑旨在教学制作一把更自由的近战武器（弹幕）(有刀光教学)
 	}
 
 	TestRender: {
-		// DisplayName: Test Render
-		// Tooltip: ""
+		DisplayName: 教学Render
+		Tooltip: Render教学武器
 	}
 
 	FirstAccessories: {
@@ -176,3 +180,5 @@ Projectiles: {
 	// RenderDistort.DisplayName: Render Distort
 	// RenderGap.DisplayName: Render Gap
 }
+
+// DamageClasses.FristDamageClass.DisplayName: Frist Damage Class
