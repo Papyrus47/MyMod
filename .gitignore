@@ -360,6 +360,7 @@ MigrationBackup/
 .ionide/
 
 # Fody - auto-generated XML schema
+.vs
 FodyWeavers.xsd
 /Helper/TwoBoneIK.cs
 /Items/TestItem.cs
