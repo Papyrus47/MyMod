@@ -122,7 +122,7 @@ namespace MyMod.Content.ModProj
             Color color1 = Color.White;//白色绘制就是图片原色
             color1.A = 0;//A赋予0使得图片颜色变为加算,可以去掉黑色部分
             //下面是激光头部的绘制
-            Texture2D head = ModContent.Request<Texture2D>("MyMod/ModProj/DeathRayHead").Value;//获取头部材质
+            Texture2D head = ModContent.Request<Texture2D>("MyMod/Content/ModProj/DeathRayHead").Value;//获取头部材质
             Main.EntitySpriteDraw(head, Projectile.Center - Main.screenPosition, null,//不需要选框
             color1,//修改后的颜色
             Projectile.velocity.ToRotation(),//让图片朝向为弹幕速度方向
@@ -140,7 +140,7 @@ namespace MyMod.Content.ModProj
                 new Vector2(1, Projectile.localAI[0] / 25f),//为使得激光更加自然，调整激光宽度
                 SpriteEffects.None, 0);
             //下面是激光尾部的绘制
-            Texture2D Tail = ModContent.Request<Texture2D>("MyMod/ModProj/DeathRayTail").Value;//获取头部材质
+            Texture2D Tail = ModContent.Request<Texture2D>("MyMod/Content/ModProj/DeathRayTail").Value;//获取头部材质
             Main.EntitySpriteDraw(Tail, Projectile.Center - Main.screenPosition
              + Projectile.velocity.SafeNormalize(Vector2.Zero) * (head.Width + Length),//接在身体末端的后面
             null,//不需要选框

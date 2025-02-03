@@ -6,13 +6,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace MyMod
+namespace MyMod.Common.GlobalItems
 {
-	// 这个类代表对所有的物品进行操作，你可以针对任何一个符合条件的物品独立修改
-	// 这意味着你可以修改任何原版和模组物品(甚至别的模组的物品)
-	public class MyGlobalItem : GlobalItem //这是一个全局物品的示例
-	{
-		public override bool InstancePerEntity => true;
+    // 这个类代表对所有的物品进行操作，你可以针对任何一个符合条件的物品独立修改
+    // 这意味着你可以修改任何原版和模组物品(甚至别的模组的物品)
+    public class MyGlobalItem : GlobalItem //这是一个全局物品的示例
+    {
+        public override bool InstancePerEntity => true;
         // 使得每个实体有自己的属性, 否则所有物品将共用你设置的属性
 
 
@@ -31,11 +31,11 @@ namespace MyMod
 
                 //注意！修改物品的DamageClass只能对物品本身的近战攻击有效，生成的弹幕不会一起改变(短剑是弹幕武器)
             }
-            if(item.DamageType == DamageClass.Magic)//对于所有魔法武器
+            if (item.DamageType == DamageClass.Magic)//对于所有魔法武器
             {
                 item.mana = 0;//魔法消耗量=0
             }
-            if(item.consumable)//如果物品是可消耗物品
+            if (item.consumable)//如果物品是可消耗物品
             {
                 item.maxStack = 1145;//堆叠上限变为1145
             }
@@ -44,11 +44,11 @@ namespace MyMod
         public override float UseTimeMultiplier(Item item, Player player)//这里可以修改物品的使用时间
         {
             //（一般饰品，BUFF之类的修改使用速度的可以写在这。利用modplayer传入字段）
-            if(item.DamageType == DamageClass.Ranged)//对于全体远程武器
+            if (item.DamageType == DamageClass.Ranged)//对于全体远程武器
             {
-                if(item.useAmmo == AmmoID.Bullet)//如果物品使用的弹药是子弹
+                if (item.useAmmo == AmmoID.Bullet)//如果物品使用的弹药是子弹
                     return base.UseTimeMultiplier(item, player) / 2f;//在原本的使用时间基础上除以2
-                if(item.useAmmo == AmmoID.Arrow)//如果物品使用弹药为箭
+                if (item.useAmmo == AmmoID.Arrow)//如果物品使用弹药为箭
                     return base.UseTimeMultiplier(item, player) / 4f;//在原本的使用时间基础上除以4
             }
             return base.UseTimeMultiplier(item, player);
@@ -61,39 +61,47 @@ namespace MyMod
             //修改damage即可修改伤害（以1为基准,如果damage *= 1.5，那就是1.5倍原伤害）
             //例如我这里想做一个"物品每次使用都会增加1%伤害，封顶1000%的功能"下面的useitem函数里已经写好使用次数记录了
             //damage *= 1 + (UseRecord / 100f);//就这么简单
-            if(item.type == ItemID.Zenith)
+            if (item.type == ItemID.Zenith)
             {
                 damage *= 0.25f;//天顶攻击力变成四分之一
+                damage += UseRecord * 0.01f;//每使用一次增加1%伤害
             }
             base.ModifyWeaponDamage(item, player, ref damage);
         }
-        public override bool CanUseItem(Item item, Player player)//这个函数会在玩家试图使用物品时执行一次
+        //public override bool CanUseItem(Item item, Player player)//这个函数会在玩家试图使用物品时执行一次
+        //{
+        //    if (base.CanUseItem(item, player))//如果能使用，说明接下来会使用一次物品，也就是真的使用了一次物品
+        //        // 哥们,这没有用啊
+        //    {
+
+        //    }
+        //    return base.CanUseItem(item, player);//这个东西返回false会让玩家无法使用这个物品。
+        //}
+        public override bool? UseItem(Item item, Player player) // 这个函数会在玩家使用物品时执行一次
         {
-            if(base.CanUseItem(item, player))//如果能使用，说明接下来会使用一次物品，也就是真的使用了一次物品
+            if (player.itemTime == 0 && UseRecord < 1000) // 限制使用次数
             {
-                if (UseRecord < 1000)
-                {
-                    UseRecord++;//每次使用都加一
-                }
+                UseRecord++;//每次使用都加一
+                return true;
             }
-            return base.CanUseItem(item, player);//这个东西返回false会让玩家无法使用这个物品。
+            return base.UseItem(item, player);
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source,
             Vector2 position, Vector2 velocity, int type, int damage, float knockback)//globalitem的Shoot函数和ModItem大同小异
         {
-            if(item.type == ItemID.Meowmere)//如果物品是喵刃
+            if (item.type == ItemID.Meowmere)//如果物品是喵刃
             {
-                for(int i = 0; i < 6; i++)
+                for (int i = 0; i < 6; i++)
                 {
-                    Projectile.NewProjectile(source, position, velocity.RotatedBy(6.283f/6f * i) * 2, //以两倍速度六向发射
+                    Projectile.NewProjectile(source, position, velocity.RotatedBy(6.283f / 6f * i) * 2, //以两倍速度六向发射
                         type,//改为光明剑气
-                        damage, knockback,player.whoAmI);
+                        damage, knockback, player.whoAmI);
 
                 }
 
                 return false;//我不需要原本的发射了
             }
-            if(item.type == ItemID.TerraBlade) //为泰拉之刃额外增加两条剑气
+            if (item.type == ItemID.TerraBlade) //为泰拉之刃额外增加两条剑气
             {
                 Projectile.NewProjectile(source, position, velocity.RotatedBy(-0.3f), //逆时针偏转0.3弧度发射
                       ProjectileID.LightBeam,//发射圣剑剑气
@@ -110,28 +118,28 @@ namespace MyMod
         {
             //这个函数是修改物品的详情页信息词条（只要是写在物品详情页的都能修改,例如伤害，击退，暴击，提示语）
             //首先介绍增加一行提示的办法。
-            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "使用了" + UseRecord +"次"));//新增一个记录使用次数的词条
+            tooltips.Add(new TooltipLine(Mod, "Tooltip2", "使用了" + UseRecord + "次"));//新增一个记录使用次数的词条
             //new Tooltipline的第一个参数照抄，第二个参数是给新增的词条命名(一般没用),第三个参数就是你要展示的字符串
             //接下来介绍修改物品原有词条的办法
-            foreach(var line in tooltips)
+            foreach (var line in tooltips)
             {
-                if(line.Mod == "Terraria")//判断这词条是不是原版的
+                if (line.Mod == "Terraria")//判断这词条是不是原版的
                 {
                     //接下来是重点，我们需要判断这个词条的名称，名称图鉴在下面。
-                    if(line.Name == "ItemName")//例如这个就是物品名的词条
+                    if (line.Name == "ItemName")//例如这个就是物品名的词条
                     {
                         line.Text += " B站搜索泰拉瑞亚MOD制作";//给该词条后加上" B站搜索泰拉瑞亚MOD制作"这几个字
                     }
-                    if(line.Name == "Knockback")//当然你也可以直接改掉这个词条
+                    if (line.Name == "Knockback")//当然你也可以直接改掉这个词条
                     {
                         line.Text = "击退没用，不想显示了，自己猜去吧";//...
                         line.OverrideColor = Color.Red;//修改本词条的颜色
                     }
-                    if(line.Name == "Speed")
+                    if (line.Name == "Speed")
                     {
                         line.Text += " 所以" + line.Text + "是多快?";//我承认我皮了
                     }
-            
+
                 }
             }//以下是Name对应的含义。（带问号说明我不确定是什么意思）
             //     • "ItemName" - 物品名称.
@@ -205,9 +213,9 @@ namespace MyMod
         public override bool InstancePerEntity => true;
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if(source is EntitySource_OnHit)
+            if (source is EntitySource_OnHit)
             {
-                
+
             }
             base.OnSpawn(projectile, source);
         }
