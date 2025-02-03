@@ -123,24 +123,24 @@ namespace MyMod.Content.ModProj
             //    }
             //}
             //下面是顶点绘制拖尾（进阶，可以不学习）,在学习这个之前请你先看完绿群教程中的“顶点绘制入门”教程
-            List<Vertex> vertices = new List<Vertex>();//声明一个顶点结构体的list，顶点结构体需要自己写，本mod自带一份，可以拿来用
+            List<CustomVertexInfo> vertices = new List<CustomVertexInfo>();//声明一个顶点结构体的list，顶点结构体需要自己写，本mod自带一份，可以拿来用
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Type]; i++)
             {
                 if (Projectile.oldPos[i] == Vector2.Zero) continue;
                 if (Projectile.ai[0] == 1)
                 {
                     Color coordColor = Main.hslToRgb(i / 20f * 1f, 0.5f, 0.5f);//这是利用hsl的色相来使得每个纹理处的颜色都不一样，形成彩虹色，你可以用别的颜色
-                    vertices.Add(new Vertex(Projectile.Center - Main.screenPosition + rangeFix * Projectile.oldRot[i].ToRotationVector2() * 1.9f,
+                    vertices.Add(new CustomVertexInfo(Projectile.Center - Main.screenPosition + rangeFix * Projectile.oldRot[i].ToRotationVector2() * 1.9f,
                       new Vector3((float)i / ProjectileID.Sets.TrailCacheLength[Type], 1, 1), coordColor));//上底
-                    vertices.Add(new Vertex(Projectile.Center - Main.screenPosition + rangeFix * Projectile.oldRot[i].ToRotationVector2() * 0.25f,
+                    vertices.Add(new CustomVertexInfo(Projectile.Center - Main.screenPosition + rangeFix * Projectile.oldRot[i].ToRotationVector2() * 0.25f,
                         new Vector3((float)i / ProjectileID.Sets.TrailCacheLength[Type], 0, 1), coordColor));//下底
 
                 }
                 else
                 {
-                    vertices.Add(new Vertex(Projectile.Center - Main.screenPosition - rangeFix * Projectile.oldRot[i].ToRotationVector2() * 1.9f,
+                    vertices.Add(new CustomVertexInfo(Projectile.Center - Main.screenPosition - rangeFix * Projectile.oldRot[i].ToRotationVector2() * 1.9f,
                                        new Vector3((float)i / ProjectileID.Sets.TrailCacheLength[Type], 1, 1), Main.hslToRgb(i / 20f * 1f, 0.5f, 0.5f)));//上底
-                    vertices.Add(new Vertex(Projectile.Center - Main.screenPosition - rangeFix * Projectile.oldRot[i].ToRotationVector2() * 0.25f,
+                    vertices.Add(new CustomVertexInfo(Projectile.Center - Main.screenPosition - rangeFix * Projectile.oldRot[i].ToRotationVector2() * 0.25f,
                         new Vector3((float)i / ProjectileID.Sets.TrailCacheLength[Type], 0, 1), Main.hslToRgb(i / 20f * 1f, 0.5f, 0.5f)));//下底
 
                 }

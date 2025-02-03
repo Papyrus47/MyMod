@@ -132,6 +132,11 @@ Items: {
 		DisplayName: Test Render2
 		Tooltip: ""
 	}
+
+	MySkillsItem: {
+		DisplayName: My Skills Item
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -171,6 +176,7 @@ Projectiles: {
 	MySwordProj.DisplayName: My Sword Proj
 	RenderDistort.DisplayName: Render Distort
 	RenderGap.DisplayName: Render Gap
+	MySkillsProj.DisplayName: My Skills Proj
 }
 
 DamageClasses.FristDamageClass.DisplayName: Frist Damage Class

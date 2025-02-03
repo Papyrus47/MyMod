@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyMod
 {
-    public struct Vertex : IVertexType
+    public struct CustomVertexInfo : IVertexType
     {
         private static VertexDeclaration _vertexDeclaration = new VertexDeclaration(new VertexElement[3]
         {
@@ -19,7 +19,13 @@ namespace MyMod
         public Vector2 Position;
         public Color Color;
         public Vector3 TexCoord;
-        public Vertex(Vector2 position, Vector3 texCoord, Color color)
+        public CustomVertexInfo(Vector2 position, Vector3 texCoord, Color color)
+        {
+            Position = position;
+            TexCoord = texCoord;
+            Color = color;
+        }
+        public CustomVertexInfo(Vector2 position, Color color,Vector3 texCoord)
         {
             Position = position;
             TexCoord = texCoord;
