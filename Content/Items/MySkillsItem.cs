@@ -16,7 +16,7 @@ namespace MyMod.Content.Items
             Item.width = 44;
             Item.height = 44;
             Item.maxStack = 1;
-            Item.damage = 300;
+            Item.damage = 50;
             Item.scale = 2f;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(10);
@@ -30,6 +30,19 @@ namespace MyMod.Content.Items
             //Item.shootSpeed = 16f;
             Item.noMelee = true;
             Item.noUseGraphic = true;
+        }
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (NPC.downedSlimeKing) // 击败史莱姆王
+            {
+                damage.Base++;
+                damage += 0.1f;
+            }
+            if(NPC.downedBoss1) // 击败克眼
+            {
+                damage.Base++;
+                damage += 0.5f;
+            }
         }
         public override void HoldItem(Player player)
         {
