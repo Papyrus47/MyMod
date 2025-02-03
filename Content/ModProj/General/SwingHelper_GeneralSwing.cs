@@ -138,7 +138,6 @@ namespace MyMod.Content.ModProj.General
             switch ((int)Projectile.ai[0])
             {
                 case 0: // 渐变
-                    SwingHelper.SetRotVel(0);
                     Projectile.ai[1]++;
                     float time = Projectile.ai[1] / preAtk.PreTime;
                     SwingHelper.Change_Lerp(setting.StartVel, time, setting.VelScale, time * 2, setting.VisualRotation, time);
@@ -188,12 +187,15 @@ namespace MyMod.Content.ModProj.General
         {
             Projectile.ai[0] = Projectile.ai[1] = Projectile.ai[2] = 0;
             SkillTimeOut = false;
+            SwingHelper.SetRotVel(0);
             TheUtility.ResetProjHit(Projectile);
         }
         public override void OnSkillDeactivate()
         {
             Projectile.ai[0] = Projectile.ai[1] = Projectile.ai[2] = 0;
             SkillTimeOut = false;
+            Projectile.damage = Projectile.originalDamage;
+            SwingHelper.SetRotVel(0);
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) => SwingHelper.GetColliding(targetHitbox);
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

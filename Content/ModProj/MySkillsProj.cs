@@ -13,6 +13,7 @@ namespace MyMod.Content.ModProj
 {
     public class MySkillsProj : ModProjectile, IBasicSkillProj
     {
+        #region 机器复制粘贴环节
         public Item SpawnItem;
         public Player Player;
         public SwingHelper SwingHelper;
@@ -75,6 +76,7 @@ namespace MyMod.Content.ModProj
             ItemLoader.OnHitNPC(SpawnItem, Player, target, hit, damageDone); // Mod物品命中
             TheUtility.VillagesItemOnHit(SpawnItem, Player, Projectile.Hitbox, Projectile.originalDamage, Projectile.knockBack, target.whoAmI, Projectile.damage, damageDone); // 原版物品命中
         }
+        #endregion
         public void Init()
         {
             OldSkills = new();
@@ -86,10 +88,15 @@ namespace MyMod.Content.ModProj
 
             SwingHelper_GeneralSwing.Setting.PreDraw drawProj = (sb, drawColor) =>
                             {
-                                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.White with { A = 0 } * factor);
+                                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.MediumPurple, factor) with { A = 0 } * factor * 2);
                                 return false;
                             };
-            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time);
+            SwingHelper_GeneralSwing.Setting.PreDraw drawProj2 = (sb, drawColor) =>
+            {
+                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink * 0.5f,Color.MediumPurple,factor) with { A = 0});
+                return false;
+            };
+            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time * 2.4f);
 
             SwingHelper_GeneralSwing SwingUp = new(this,
             setting: new() // 设置
@@ -188,6 +195,11 @@ namespace MyMod.Content.ModProj
             preAtk: new() // 攻击前
             {
                 PreTime = 3, // 前摇时间
+                OnChange = (_) =>
+                {
+                    Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
+                    SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
+                }
             },
             postAtk: new() // 攻击后
             {
@@ -199,8 +211,48 @@ namespace MyMod.Content.ModProj
                 TimeChange = swingChange, // 时间变化函数
             }, SwingHelper, Player);
 
+            SwingHelper_GeneralSwing ChangeSlash = new(this,
+            setting: new() // 设置
+            {
+                SwingLenght = Projectile.Size.Length(),// 挥舞长度
+                ChangeCondition = () => Player.controlUseTile,
+                SwingRot = MathHelper.Pi + MathHelper.PiOver2, // 挥舞角度
+                preDraw = drawProj2,
+                SwingDirectionChange = false, // 挥舞方向变化
+                StartVel = -Vector2.UnitX.RotatedBy(-0.4f),// 起始速度朝向
+                VelScale = new Vector2(2, 0.3f), // 速度缩放
+                VisualRotation = 0.7f, // 视觉朝向
+            },
+            preAtk: new() // 攻击前
+            {
+                PreTime = 5, // 前摇时间
+                OnStart = (Swing) =>
+                {
+                    if (Swing.setting.ChangeCondition()) // 蓄力
+                    {
+                        Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
+                        SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
+                        if (Projectile.ai[1] > 2) // 蓄力2帧
+                        {
+                            Projectile.ai[1] = 0;
+                            if (Projectile.damage < Projectile.originalDamage * 2)
+                                Projectile.damage++;
+                        }
+                    }
+                }
+            },
+            postAtk: new() // 攻击后
+            {
+                PostMaxTime = 60, // 后摇最大时间
+                PostAtkTime = 30, // 后摇切换时间
+            }, onAtk: new() // 攻击时
+            {
+                SwingTime = 20, // 挥舞时间
+                TimeChange = swingChange, // 时间变化函数
+            }, SwingHelper, Player);
 
-            noUse.AddSkill(SwingUp).AddSkill(SwingAcross).AddSkill(SwingDown).AddSkill(Spurt).AddSkill(SwingUp);
+            noUse.AddSkill(ChangeSlash); // 蓄力技能
+            noUse.AddSkill(SwingUp).AddSkill(SwingAcross).AddSkill(SwingDown).AddSkill(Spurt).AddSkill(SwingUp); // 挥舞连段
             CurrentSkill = noUse; // 切换技能为不使用时候的技能
         }
     }
