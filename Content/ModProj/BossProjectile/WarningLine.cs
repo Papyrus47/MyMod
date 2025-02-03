@@ -9,8 +9,8 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using MyMod.NPCs;
 using Terraria.Audio;
+using MyMod.Content.NPCs;
 
 namespace MyMod.Content.ModProj.BossProjectile
 {
