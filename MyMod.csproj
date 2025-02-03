@@ -9,4 +9,7 @@
     <None Remove="Content\ModProj\MySkillsProj.png" />
     <None Remove="Localization\zh-Hans_Mods.MyMod.hjson" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\UIs\" />
+  </ItemGroup>
 </Project>
