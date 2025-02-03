@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.ID;
 
 namespace MyMod.Content.ModProj
 {
@@ -96,7 +97,18 @@ namespace MyMod.Content.ModProj
                 SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink * 0.5f,Color.MediumPurple,factor) with { A = 0});
                 return false;
             };
-            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time * 2.4f);
+            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time);
+            Action<NPC, NPC.HitInfo, int> onHitEffect = (target, hit, damage) =>
+            {
+                for (int i = -30; i <= 30; i++)
+                {
+                    var dust = Dust.NewDustPerfect(target.Center, DustID.CrystalPulse, Projectile.velocity.RotatedBy(MathHelper.PiOver2 * Player.direction).SafeNormalize(default) * i * 0.5f, 100, Color.Purple,0.8f);
+                    dust.noGravity = true;
+
+                    //dust = Dust.NewDustPerfect(target.Center, DustID.CrystalPulse, Projectile.velocity.SafeNormalize(default) * i * 0.5f, 100, Color.Purple, 0.8f);
+                    //dust.noGravity = true;
+                }
+            };
 
             SwingHelper_GeneralSwing SwingUp = new(this,
             setting: new() // 设置
@@ -120,11 +132,12 @@ namespace MyMod.Content.ModProj
                 PostAtkTime = 3, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 20, // 挥舞时间
+                SwingTime = 10, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
                 OnHit = (target, hit, damage) =>
                 {
-                    if(target.knockBackResist != 0)
+                    onHitEffect.Invoke(target, hit, damage);
+                    if (target.knockBackResist != 0)
                         target.velocity.Y = -5f; // 击飞
                 }
             }, SwingHelper, Player);
@@ -147,12 +160,13 @@ namespace MyMod.Content.ModProj
             },
             postAtk: new() // 攻击后
             {
-                PostMaxTime = 30, // 后摇最大时间
+                PostMaxTime = 15, // 后摇最大时间
                 PostAtkTime = 3, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 30, // 挥舞时间
+                SwingTime = 10, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
+                OnHit = onHitEffect
             }, SwingHelper, Player);
             SwingHelper_GeneralSwing SwingDown = new(this,
             setting: new() // 设置
@@ -172,12 +186,13 @@ namespace MyMod.Content.ModProj
             },
             postAtk: new() // 攻击后
             {
-                PostMaxTime = 30, // 后摇最大时间
+                PostMaxTime = 20, // 后摇最大时间
                 PostAtkTime = 3, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 30, // 挥舞时间
+                SwingTime = 10, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
+                OnHit = onHitEffect
             }, SwingHelper, Player);
 
             SwingHelper_GeneralSwing Spurt = new(this,
@@ -207,8 +222,9 @@ namespace MyMod.Content.ModProj
                 PostAtkTime = 30, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 10, // 挥舞时间
+                SwingTime = 5, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
+                OnHit = onHitEffect
             }, SwingHelper, Player);
 
             SwingHelper_GeneralSwing ChangeSlash = new(this,
@@ -243,12 +259,13 @@ namespace MyMod.Content.ModProj
             },
             postAtk: new() // 攻击后
             {
-                PostMaxTime = 60, // 后摇最大时间
-                PostAtkTime = 30, // 后摇切换时间
+                PostMaxTime = 15, // 后摇最大时间
+                PostAtkTime = 2, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 20, // 挥舞时间
+                SwingTime = 4, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
+                OnHit = onHitEffect
             }, SwingHelper, Player);
 
             noUse.AddSkill(ChangeSlash); // 蓄力技能

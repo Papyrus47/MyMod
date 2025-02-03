@@ -1,4 +1,4 @@
-
+ï»¿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,106 +13,106 @@ using Terraria.ModLoader;
 
 namespace MyMod.Content.ModProj.BossProjectile
 {
-    public class BigDeathRay : ModProjectile //Î²É±´ó¼¤¹â
+    public class BigDeathRay : ModProjectile //å°¾æ€å¤§æ¿€å…‰
     {
-        float LaserLength = 0;//Éè¶¨Ò»¸ö³¤¶È×Ö¶Î
-        public override void SetStaticDefaults()//±¾º¯ÊıÃ¿´Î¼ÓÔØÄ£×éÊ±Ö´ĞĞÒ»´Î£¬ÓÃÓÚ·ÖÅä¾²Ì¬ÊôĞÔ
+        float LaserLength = 0;//è®¾å®šä¸€ä¸ªé•¿åº¦å­—æ®µ
+        public override void SetStaticDefaults()//æœ¬å‡½æ•°æ¯æ¬¡åŠ è½½æ¨¡ç»„æ—¶æ‰§è¡Œä¸€æ¬¡ï¼Œç”¨äºåˆ†é…é™æ€å±æ€§
         {
-            Main.projFrames[Type] = 1;//ÄãµÄÖ¡Í¼ÓĞ¶àÉÙÖ¡¾ÍÌî¶àÉÙ
-                                      //  ProjectileID.Sets.TrailingMode[Type] = 2;//ÕâÒ»Ïî¸³Öµ2¿ÉÒÔ¼ÇÂ¼ÔË¶¯¹ì¼£ºÍ·½Ïò£¨ÓÃÓÚÖÆ×÷ÍÏÎ²£©
-                                      //  ProjectileID.Sets.TrailCacheLength[Type] = 10;//ÕâÒ»Ïî´ú±í¼ÇÂ¼µÄ¹ì¼£×î¶àÄÜ×·Ëİµ½¶àÉÙÖ¡ÒÔÇ°(×¢Òâ×î´óÖµÈ¡²»µ½)
-            ProjectileID.Sets.DrawScreenCheckFluff[Type] = 4000;//ÕâÒ»Ïî´ú±íµ¯Ä»³¬¹ıÆÁÄ»Íâ¶àÉÙ¾àÀëÒÔÄÚ¿ÉÒÔ»æÖÆ
-                                                                //ÓÃÓÚ³¤ÌõĞÎµ¯Ä»»æÖÆ
-                                                                //¼¤¹âµ¯Ä»½¨Òé4000×óÓÒ
+            Main.projFrames[Type] = 1;//ä½ çš„å¸§å›¾æœ‰å¤šå°‘å¸§å°±å¡«å¤šå°‘
+                                      //  ProjectileID.Sets.TrailingMode[Type] = 2;//è¿™ä¸€é¡¹èµ‹å€¼2å¯ä»¥è®°å½•è¿åŠ¨è½¨è¿¹å’Œæ–¹å‘ï¼ˆç”¨äºåˆ¶ä½œæ‹–å°¾ï¼‰
+                                      //  ProjectileID.Sets.TrailCacheLength[Type] = 10;//è¿™ä¸€é¡¹ä»£è¡¨è®°å½•çš„è½¨è¿¹æœ€å¤šèƒ½è¿½æº¯åˆ°å¤šå°‘å¸§ä»¥å‰(æ³¨æ„æœ€å¤§å€¼å–ä¸åˆ°)
+            ProjectileID.Sets.DrawScreenCheckFluff[Type] = 4000;//è¿™ä¸€é¡¹ä»£è¡¨å¼¹å¹•è¶…è¿‡å±å¹•å¤–å¤šå°‘è·ç¦»ä»¥å†…å¯ä»¥ç»˜åˆ¶
+                                                                //ç”¨äºé•¿æ¡å½¢å¼¹å¹•ç»˜åˆ¶
+                                                                //æ¿€å…‰å¼¹å¹•å»ºè®®4000å·¦å³
             base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {
-            LaserLength = 2500;//2500µÄ³¤¶È
-            Projectile.width = Projectile.height = 32;//³¤¿íÎŞËùÎ½£¬ÎÒÃÇĞèÒª¸ÄĞ´Åö×²ÏäÁË
-            //×¢ÒâÏ¸³¤ĞÎµ¯Ä»Ç§Íò²»ÄÜÕÕºùÂ«»­Æ°°Ñ³¤¿í°´ÌùÍ¼ÉèÖÃÒòÎªÅö×²ÏäÊÇ¹Ì¶¨µÄ£¬²»»áËæ×ÅÌùÍ¼µÄĞı×ª¶øĞı×ª
-            Projectile.friendly = false;//ÓÑ·½µ¯Ä»
-            Projectile.hostile = true;//µĞ¶Ôµ¯Ä»
-            Projectile.tileCollide = false;//false¾ÍÄÜÈÃËû´©Ç½,¾ÍËãÊÇ²»´©Ç½¼¤¹âÒ²²»ÒªÉèÖÃ²»´©Ç½
-            Projectile.timeLeft = 120;//ÏûÉ¢Ê±¼ä
-            Projectile.aiStyle = -1;//²»Ê¹ÓÃÔ­°æAI
-            Projectile.penetrate = -1;//±íÊ¾ÄÜ´©Í¸¼¸´Î¹ÖÎï¡£-1ÊÇÎŞÏŞÖÆ
-            Projectile.ignoreWater = true;//ÎŞÊÓÒºÌå
+            LaserLength = 2500;//2500çš„é•¿åº¦
+            Projectile.width = Projectile.height = 32;//é•¿å®½æ— æ‰€è°“ï¼Œæˆ‘ä»¬éœ€è¦æ”¹å†™ç¢°æ’ç®±äº†
+            //æ³¨æ„ç»†é•¿å½¢å¼¹å¹•åƒä¸‡ä¸èƒ½ç…§è‘«èŠ¦ç”»ç“¢æŠŠé•¿å®½æŒ‰è´´å›¾è®¾ç½®å› ä¸ºç¢°æ’ç®±æ˜¯å›ºå®šçš„ï¼Œä¸ä¼šéšç€è´´å›¾çš„æ—‹è½¬è€Œæ—‹è½¬
+            Projectile.friendly = false;//å‹æ–¹å¼¹å¹•
+            Projectile.hostile = true;//æ•Œå¯¹å¼¹å¹•
+            Projectile.tileCollide = false;//falseå°±èƒ½è®©ä»–ç©¿å¢™,å°±ç®—æ˜¯ä¸ç©¿å¢™æ¿€å…‰ä¹Ÿä¸è¦è®¾ç½®ä¸ç©¿å¢™
+            Projectile.timeLeft = 120;//æ¶ˆæ•£æ—¶é—´
+            Projectile.aiStyle = -1;//ä¸ä½¿ç”¨åŸç‰ˆAI
+            Projectile.penetrate = -1;//è¡¨ç¤ºèƒ½ç©¿é€å‡ æ¬¡æ€ªç‰©ã€‚-1æ˜¯æ— é™åˆ¶
+            Projectile.ignoreWater = true;//æ— è§†æ¶²ä½“
             base.SetDefaults();
         }
-        public override bool ShouldUpdatePosition()//¾ö¶¨Õâ¸öµ¯Ä»µÄËÙ¶ÈÊÇ·ñ¿ØÖÆËûµÄÎ»ÖÃ±ä»¯
+        public override bool ShouldUpdatePosition()//å†³å®šè¿™ä¸ªå¼¹å¹•çš„é€Ÿåº¦æ˜¯å¦æ§åˆ¶ä»–çš„ä½ç½®å˜åŒ–
         {
             return false;
-            //×¢Òâ£¬¼¤¹âÀàµ¯Ä»Òª·µ»Øfalse,ËÙ¶ÈÖ»ÊÇÓÃÀ´¸³Óè¼¤¹â·½ÏòºÍ»÷ÍËÁ¦µÄ£¬ÒªĞŞ¸ÄÎ»ÖÃÇëÖ±½Ó¶¯center
+            //æ³¨æ„ï¼Œæ¿€å…‰ç±»å¼¹å¹•è¦è¿”å›false,é€Ÿåº¦åªæ˜¯ç”¨æ¥èµ‹äºˆæ¿€å…‰æ–¹å‘å’Œå‡»é€€åŠ›çš„ï¼Œè¦ä¿®æ”¹ä½ç½®è¯·ç›´æ¥åŠ¨center
         }
-        public override void AI()//¼¤¹âAIÖ÷ÒªÊÇ¿ØÖÆ·½ÏòºÍÔ´µãÎ»ÖÃ
+        public override void AI()//æ¿€å…‰AIä¸»è¦æ˜¯æ§åˆ¶æ–¹å‘å’Œæºç‚¹ä½ç½®
         {
             Main.LocalPlayer.GetModPlayer<ScreenMovePlayer>().ScreenShakeTimer = 2;
             Main.LocalPlayer.GetModPlayer<ScreenMovePlayer>().ScreenShakeScale = 10;
             NPC npc = Main.npc[(int)Projectile.ai[0]];
             if (npc.active && npc.type == ModContent.NPCType<NPCs.PrimaryBoss>() && npc.ai[0] < 950)
             {
-                if (Projectile.timeLeft < 17) Projectile.timeLeft = 17;//±£Ö¤NPCÔÚÎ¬³Ö¼¤¹â·¢Éä×´Ì¬Ê±£¬µ¯Ä»µ¹¼ÆÊ±Î¬³ÖÔÚ½øÈëÏûÊ§¶¯»­µÄÇ°1Ö¡
-                Projectile.velocity = npc.rotation.ToRotationVector2();//ÈÃµ¯Ä»µÄËÙ¶È·½Ïò¸úËæ×ÅNPC
-                //Éú³ÉÁ£×Ó
+                if (Projectile.timeLeft < 17) Projectile.timeLeft = 17;//ä¿è¯NPCåœ¨ç»´æŒæ¿€å…‰å‘å°„çŠ¶æ€æ—¶ï¼Œå¼¹å¹•å€’è®¡æ—¶ç»´æŒåœ¨è¿›å…¥æ¶ˆå¤±åŠ¨ç”»çš„å‰1å¸§
+                Projectile.velocity = npc.rotation.ToRotationVector2();//è®©å¼¹å¹•çš„é€Ÿåº¦æ–¹å‘è·Ÿéšç€NPC
+                //ç”Ÿæˆç²’å­
                 Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.Zero);
-                float randomLength = Main.rand.NextFloat(36, 1500);//ÔÚ36~1500ÕâÒ»¶ÎÉÏËæ»úÉú³ÉÁ£×Ó£¬ÓªÔìĞ§¹û
+                float randomLength = Main.rand.NextFloat(36, 1500);//åœ¨36~1500è¿™ä¸€æ®µä¸Šéšæœºç”Ÿæˆç²’å­ï¼Œè¥é€ æ•ˆæœ
                 var d = Dust.NewDustDirect(Projectile.Center + direction * randomLength, 0, 0, DustID.SolarFlare, 0, 0, 0, Color.Red, 3f);
                 d.noGravity = true;
             }
-            //ÕâÒ»¶ÎÊÇÎªÁËÊÓ¾õĞ§¹ûÉèÖÃµÄAI,localai0½«±»ÓÃÀ´¿ØÖÆ¼¤¹â¿í¶È
-            if (Projectile.localAI[0] < 15 && Projectile.timeLeft > 16)//µ¯Ä»³öÏÖÊ±Ôö¼Ó
+            //è¿™ä¸€æ®µæ˜¯ä¸ºäº†è§†è§‰æ•ˆæœè®¾ç½®çš„AI,localai0å°†è¢«ç”¨æ¥æ§åˆ¶æ¿€å…‰å®½åº¦
+            if (Projectile.localAI[0] < 15 && Projectile.timeLeft > 16)//å¼¹å¹•å‡ºç°æ—¶å¢åŠ 
                 Projectile.localAI[0]++;
-            if (Projectile.timeLeft < 16) Projectile.localAI[0]--;//µ¯Ä»¿ìÒªÏûÊ§Ê±¼õÉÙ
+            if (Projectile.timeLeft < 16) Projectile.localAI[0]--;//å¼¹å¹•å¿«è¦æ¶ˆå¤±æ—¶å‡å°‘
 
 
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            if (Projectile.localAI[0] < 15) return false;//¼¤¹â²»³ÉĞÎÊ±²»ÅĞ¶¨
-            int Length = (int)LaserLength;//¶¨Òå¼¤¹â³¤¶È
-            //Õâ¸öº¯ÊıÓÃÓÚ¿ØÖÆµ¯Ä»Åö×²ÅĞ¶Ï£¬·ûºÏÄãµÄÅö×²Ìõ¼şÊ±·µ»ØÕæ¼´¿É
-            float point = 0f;//Õâ¸öÕÕ³­¾ÍĞĞ
+            if (Projectile.localAI[0] < 15) return false;//æ¿€å…‰ä¸æˆå½¢æ—¶ä¸åˆ¤å®š
+            int Length = (int)LaserLength;//å®šä¹‰æ¿€å…‰é•¿åº¦
+            //è¿™ä¸ªå‡½æ•°ç”¨äºæ§åˆ¶å¼¹å¹•ç¢°æ’åˆ¤æ–­ï¼Œç¬¦åˆä½ çš„ç¢°æ’æ¡ä»¶æ—¶è¿”å›çœŸå³å¯
+            float point = 0f;//è¿™ä¸ªç…§æŠ„å°±è¡Œ
             Vector2 startPoint = Projectile.Center;
             Vector2 endPoint = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.Zero) * Length;
-            //½áÊøµãÔÚµ¯Ä»ËÙ¶È·½ÏòÉÏ¾àÀë1500ÏñËØ´¦µÄÎ»ÖÃ
+            //ç»“æŸç‚¹åœ¨å¼¹å¹•é€Ÿåº¦æ–¹å‘ä¸Šè·ç¦»1500åƒç´ å¤„çš„ä½ç½®
             bool K =
-                Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), //¶Ô·½Åö×²ÏäµÄÎ»ÖÃ
-                targetHitbox.Size(),//¶Ô·½Åö×²ÏäµÄ´óĞ¡ 
-                startPoint,//ÏßĞÎÅö×²ÏäÆğÊ¼µã 
-                endPoint,//½áÊøµã
-                150//ÏßµÄ¿í¶È
+                Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), //å¯¹æ–¹ç¢°æ’ç®±çš„ä½ç½®
+                targetHitbox.Size(),//å¯¹æ–¹ç¢°æ’ç®±çš„å¤§å° 
+                startPoint,//çº¿å½¢ç¢°æ’ç®±èµ·å§‹ç‚¹ 
+                endPoint,//ç»“æŸç‚¹
+                150//çº¿çš„å®½åº¦
                 , ref point);
-            if (K) return true;//Èç¹ûÂú×ãÕâ¸öÅö×²ÅĞ¶Ï£¬·µ»ØÕæ£¬Ò²¾ÍÊÇ½øĞĞÅö×²ÉËº¦
+            if (K) return true;//å¦‚æœæ»¡è¶³è¿™ä¸ªç¢°æ’åˆ¤æ–­ï¼Œè¿”å›çœŸï¼Œä¹Ÿå°±æ˜¯è¿›è¡Œç¢°æ’ä¼¤å®³
             return base.Colliding(projHitbox, targetHitbox);
         }
 
-        public override bool PreDraw(ref Color lightColor)//predraw·µ»Øfalse¼´¿É½ûÓÃÔ­°æ»æÖÆ
+        public override bool PreDraw(ref Color lightColor)//predrawè¿”å›falseå³å¯ç¦ç”¨åŸç‰ˆç»˜åˆ¶
         {
-            float Multiply = 150f / 36f;//ÓÃÎÒÃÇĞèÒªµÄ¿í¶È(150)³ıÒÔ¼¤¹âÍ¼Æ¬¿í¶È(36)µÃµ½´ÓÔ­Í¼·Å´óµ½¹æ¶¨¿í¶ÈËùĞèÒªµÄ±¶ÂÊ
-            int Length = (int)LaserLength;//¶¨Òå¼¤¹â³¤¶È
-            //ºÚÉ«±³¾°µÄÍ¼Æ¬Èç¹û²»¶ÔAÖµ¸³Óè0£¬»òÕßÆô¶¯AdditiveÄ£Ê½µÄ»°£¬»­³öÀ´ÊÇºÚÉ«£¬Ğ§¹ûºÜ²î
-            //½ÓÏÂÀ´ÊÇ¼òµ¥µÄÑÓ³¤»æÖÆ
-            //ÏÂÃæÊÇ¼¤¹âÍ·²¿µÄ»æÖÆ
-            Texture2D head = ModContent.Request<Texture2D>("MyMod/ModProj/BossProjectile/BigDeathRay_Head").Value;//»ñÈ¡Í·²¿²ÄÖÊ
-            Main.EntitySpriteDraw(head, Projectile.Center - Main.screenPosition, null,//²»ĞèÒªÑ¡¿ò
+            float Multiply = 150f / 36f;//ç”¨æˆ‘ä»¬éœ€è¦çš„å®½åº¦(150)é™¤ä»¥æ¿€å…‰å›¾ç‰‡å®½åº¦(36)å¾—åˆ°ä»åŸå›¾æ”¾å¤§åˆ°è§„å®šå®½åº¦æ‰€éœ€è¦çš„å€ç‡
+            int Length = (int)LaserLength;//å®šä¹‰æ¿€å…‰é•¿åº¦
+            //é»‘è‰²èƒŒæ™¯çš„å›¾ç‰‡å¦‚æœä¸å¯¹Aå€¼èµ‹äºˆ0ï¼Œæˆ–è€…å¯åŠ¨Additiveæ¨¡å¼çš„è¯ï¼Œç”»å‡ºæ¥æ˜¯é»‘è‰²ï¼Œæ•ˆæœå¾ˆå·®
+            //æ¥ä¸‹æ¥æ˜¯ç®€å•çš„å»¶é•¿ç»˜åˆ¶
+            //ä¸‹é¢æ˜¯æ¿€å…‰å¤´éƒ¨çš„ç»˜åˆ¶
+            Texture2D head = ModContent.Request<Texture2D>("MyMod/Content/ModProj/BossProjectile/BigDeathRay_Head").Value;//è·å–å¤´éƒ¨æè´¨
+            Main.EntitySpriteDraw(head, Projectile.Center - Main.screenPosition, null,//ä¸éœ€è¦é€‰æ¡†
             Color.White,
-            Projectile.velocity.ToRotation(),//ÈÃÍ¼Æ¬³¯ÏòÎªµ¯Ä»ËÙ¶È·½Ïò
-            new Vector2(0, head.Height / 2),//²Î¿¼Ô­µãÑ¡ÔñÍ¼Æ¬×ó±ßÖĞµã
-            new Vector2(Multiply, Multiply * Projectile.localAI[0] / 25f),//ÎªÊ¹µÃ¼¤¹â¸ü¼Ó×ÔÈ»£¬µ÷Õû¼¤¹â¿í¶È
+            Projectile.velocity.ToRotation(),//è®©å›¾ç‰‡æœå‘ä¸ºå¼¹å¹•é€Ÿåº¦æ–¹å‘
+            new Vector2(0, head.Height / 2),//å‚è€ƒåŸç‚¹é€‰æ‹©å›¾ç‰‡å·¦è¾¹ä¸­ç‚¹
+            new Vector2(Multiply, Multiply * Projectile.localAI[0] / 25f),//ä¸ºä½¿å¾—æ¿€å…‰æ›´åŠ è‡ªç„¶ï¼Œè°ƒæ•´æ¿€å…‰å®½åº¦
             SpriteEffects.None, 0);
 
-            //ÏÂÃæÊÇ¼¤¹âÉíÌåµÄ»æÖÆ
-            Texture2D tex = TextureAssets.Projectile[Type].Value;//»ñÈ¡²ÄÖÊ£¬ÕâÊÇ¼¤¹âÖĞ²¿
+            //ä¸‹é¢æ˜¯æ¿€å…‰èº«ä½“çš„ç»˜åˆ¶
+            Texture2D tex = TextureAssets.Projectile[Type].Value;//è·å–æè´¨ï¼Œè¿™æ˜¯æ¿€å…‰ä¸­éƒ¨
             Main.EntitySpriteDraw(tex, Projectile.Center - Main.screenPosition
-                + Projectile.velocity.SafeNormalize(Vector2.Zero) * head.Width * Multiply,//½ÓÔÚÍ·²¿ºóÃæ£¬ËùÒÔ¼ÓÉÏÍ·²¿³¤¶ÈµÄ·½ÏòÏòÁ¿
-                new Rectangle(0, 0, Length, tex.Height),//ÔÚ¸ß¶È²»±äµÄ»ù´¡ÉÏ£¬XÖáÑÓ³¤µ½length
+                + Projectile.velocity.SafeNormalize(Vector2.Zero) * head.Width * Multiply,//æ¥åœ¨å¤´éƒ¨åé¢ï¼Œæ‰€ä»¥åŠ ä¸Šå¤´éƒ¨é•¿åº¦çš„æ–¹å‘å‘é‡
+                new Rectangle(0, 0, Length, tex.Height),//åœ¨é«˜åº¦ä¸å˜çš„åŸºç¡€ä¸Šï¼ŒXè½´å»¶é•¿åˆ°length
                 Color.White,
-                Projectile.velocity.ToRotation(),//ÈÃÍ¼Æ¬³¯ÏòÎªµ¯Ä»ËÙ¶È·½Ïò
-                new Vector2(0, tex.Height / 2),//²Î¿¼Ô­µãÑ¡ÔñÍ¼Æ¬×ó±ßÖĞµã
-                new Vector2(1, Projectile.localAI[0] / 25f * Multiply),//ÎªÊ¹µÃ¼¤¹â¸ü¼Ó×ÔÈ»£¬µ÷Õû¼¤¹â¿í¶È
+                Projectile.velocity.ToRotation(),//è®©å›¾ç‰‡æœå‘ä¸ºå¼¹å¹•é€Ÿåº¦æ–¹å‘
+                new Vector2(0, tex.Height / 2),//å‚è€ƒåŸç‚¹é€‰æ‹©å›¾ç‰‡å·¦è¾¹ä¸­ç‚¹
+                new Vector2(1, Projectile.localAI[0] / 25f * Multiply),//ä¸ºä½¿å¾—æ¿€å…‰æ›´åŠ è‡ªç„¶ï¼Œè°ƒæ•´æ¿€å…‰å®½åº¦
                 SpriteEffects.None, 0);
-            return false;//return false×èÖ¹×Ô¶¯»æÖÆ
+            return false;//return falseé˜»æ­¢è‡ªåŠ¨ç»˜åˆ¶
         }
     }
 
