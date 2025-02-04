@@ -134,6 +134,7 @@ namespace MyMod.Content.ModProj.General
         {
             Projectile.spriteDirection = Player.direction * setting.SwingDirectionChange.ToDirectionInt();
             Player.heldProj = Projectile.whoAmI;
+            Projectile.hide = true;
 
             switch ((int)Projectile.ai[0])
             {
@@ -195,6 +196,7 @@ namespace MyMod.Content.ModProj.General
             Projectile.ai[0] = Projectile.ai[1] = Projectile.ai[2] = 0;
             SkillTimeOut = false;
             Projectile.damage = Projectile.originalDamage;
+            Projectile.hide = false;
             SwingHelper.SetRotVel(0);
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) => SwingHelper.GetColliding(targetHitbox);

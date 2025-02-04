@@ -33,6 +33,7 @@ namespace MyMod.Content.ModProj
             Projectile.DamageType = DamageClass.Melee;//近战伤害
             Projectile.penetrate = -1;//表示能穿透几次,-1代表无限
             Projectile.ignoreWater = true;//无视液体
+            Projectile.hide = true; // 隐藏
             base.SetDefaults();
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -56,7 +57,7 @@ namespace MyMod.Content.ModProj
         {
             Projectile.timeLeft = 2;//我们不以timeleft作为弹幕消失要求,因此需要始终维持timeleft
             float rotatespeed = Projectile.ai[1];//我们生成这个弹幕时，传入ai1作为挥舞速度
-                                                 //  player.heldProj = Projectile.whoAmI;
+            player.heldProj = Projectile.whoAmI; // 持有这个弹幕
             player.itemTime = player.itemAnimation = 2;//维持住玩家的使用
             //我们在发射这个弹幕时给ai0传入-1或1（玩家朝着右边挥舞就传入1，朝着左边就传入-1，因为这是不对称的武器）
             Projectile.rotation += Projectile.ai[0] * rotatespeed;//让这个弹幕顺时针/逆时针转，取决于弹幕生成出来时向左还是向右

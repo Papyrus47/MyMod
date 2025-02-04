@@ -33,6 +33,10 @@ namespace MyMod.Common
         /// </summary>
         public byte UseShaderPass = 0;
         /// <summary>
+        /// 重复绘制拖尾的次数
+        /// </summary>
+        public int DrawTrailCount = 1;
+        /// <summary>
         /// 挥舞的启用
         /// </summary>
         public bool _acitveSwing;
@@ -401,50 +405,58 @@ namespace MyMod.Common
             if (colorFunc == null)
                 return;
             int length = oldVels.Length;
-            for (int i = length - 1; i >= 0; i--)
-            {
-                Vector2 vel = GetOldVel(i, true);
-                if (vel == default)
-                {
-                    break;
-                }
 
-                //float factor2 = EaseFunction.EaseOutQuint(i, 0f, length - 1, 0, 0.2f);
-                float factor = (float)i / length;
-                Color drawColor = colorFunc.Invoke(factor); // 获取绘制颜色
-                //Main.NewText(drawColor);
-                Vector2 pos = GetDrawCenter(i);
-                if (_drawCorrections)
-                {
-                    pos = Center + (pos - Center);
-                }
-                if (effect == null || UseShaderPass == 1)
-                {
-                    pos -= Main.screenPosition;
-                }
-                float z = 0;
-                if (SetZ != null) z = SetZ(factor);
-                customVertices.Add(new(pos, drawColor, new Vector3(factor, 0, z)));
-                customVertices.Add(new(pos + vel, drawColor, new Vector3(factor, 1, z)));
-            }
-            if (customVertices.Count > 4)
+            for (int j = 0; j < DrawTrailCount; j++) // 重复绘制拖尾的次数
             {
-                List<CustomVertexInfo> vertices = TheUtility.GenerateTriangle(customVertices);
-                GraphicsDevice gd = Main.graphics.GraphicsDevice;
-                //var origin = gd.RasterizerState;
-                //RasterizerState rasterizerState = new()
-                //{
-                //    CullMode = CullMode.None,
-                //    FillMode = FillMode.WireFrame
-                //};
-                //gd.RasterizerState = rasterizerState;
-                //gd.Textures[0] = tex;
+                for (int i = length - 1; i >= 0; i--)
+                {
+                    Vector2 vel = GetOldVel(i, true);
+                    if (vel == default)
+                    {
+                        break;
+                    }
 
-                gd.Textures[0] = tex;
-                //gd.Textures[0] = TextureAssets.MagicPixel.Value;
-                effect?.CurrentTechnique.Passes[UseShaderPass].Apply();
-                gd.DrawUserPrimitives(PrimitiveType.TriangleList, vertices.ToArray(), 0, vertices.Count / 3);
-                //gd.RasterizerState = origin;
+                    //float factor2 = EaseFunction.EaseOutQuint(i, 0f, length - 1, 0, 0.2f);
+                    float factor = (float)i / length;
+                    Color drawColor = colorFunc.Invoke(factor); // 获取绘制颜色
+                                                                //Main.NewText(drawColor);
+                    Vector2 pos = GetDrawCenter(i);
+                    if (_drawCorrections)
+                    {
+                        pos = Center + (pos - Center);
+                    }
+                    if (effect == null || UseShaderPass == 1)
+                    {
+                        pos -= Main.screenPosition;
+                    }
+                    float z = 0;
+                    if (SetZ != null) z = SetZ(factor);
+
+
+                    customVertices.Add(new(pos, drawColor, new Vector3(factor, 0, z)));
+                    customVertices.Add(new(pos + vel, drawColor, new Vector3(factor, 1, z)));
+
+                }
+                if (customVertices.Count > 4 * DrawTrailCount)
+                {
+                    List<CustomVertexInfo> vertices = TheUtility.GenerateTriangle(customVertices);
+                    GraphicsDevice gd = Main.graphics.GraphicsDevice;
+                    //var origin = gd.RasterizerState;
+                    //RasterizerState rasterizerState = new()
+                    //{
+                    //    CullMode = CullMode.None,
+                    //    FillMode = FillMode.WireFrame
+                    //};
+                    //gd.RasterizerState = rasterizerState;
+                    //gd.Textures[0] = tex;
+
+                    gd.Textures[0] = tex;
+                    //gd.Textures[0] = TextureAssets.MagicPixel.Value;
+                    effect?.CurrentTechnique.Passes[UseShaderPass].Apply();
+                    gd.DrawUserPrimitives(PrimitiveType.TriangleList, vertices.ToArray(), 0, vertices.Count / 3);
+                    customVertices.Clear();
+                    //gd.RasterizerState = origin;
+                }
             }
         }
 

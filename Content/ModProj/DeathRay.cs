@@ -53,9 +53,10 @@ namespace MyMod.Content.ModProj
             Projectile.tileCollide = false;//false就能让他穿墙,就算是不穿墙激光也不要设置不穿墙
             Projectile.timeLeft = 120;//消散时间
             Projectile.aiStyle = -1;//不使用原版AI
-            Projectile.DamageType = DamageClass.Ranged;//魔法伤害
+            Projectile.DamageType = DamageClass.Magic;//魔法伤害
             Projectile.penetrate = -1;//表示能穿透几次怪物。-1是无限制
             Projectile.ignoreWater = true;//无视液体
+            Projectile.hide = true; // 隐藏弹幕避免绘制两次 这是重点
             base.SetDefaults();
         }
         public override bool ShouldUpdatePosition()//决定这个弹幕的速度是否控制他的位置变化

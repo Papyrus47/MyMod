@@ -40,6 +40,7 @@ namespace MyMod.Content.ModProj
                 SwingHelper = new(Projectile, 16, TextureAssets.Item[SpawnItem.type]);
                 Projectile.scale = Player.GetAdjustedItemScale(SpawnItem);
                 Projectile.Size = SpawnItem.Size * Projectile.scale;
+                SwingHelper.DrawTrailCount = 4;
                 //SwingLength = Projectile.Size.Length();
                 //Main.projFrames[Type] = TheUtility.GetItemFrameCount(SpawnItem);
                 Init();
@@ -89,12 +90,12 @@ namespace MyMod.Content.ModProj
 
             SwingHelper_GeneralSwing.Setting.PreDraw drawProj = (sb, drawColor) =>
                             {
-                                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.MediumPurple, factor) with { A = 0 } * factor * 2);
+                                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.Purple, factor) with { A = 0 } * factor * 3);
                                 return false;
                             };
             SwingHelper_GeneralSwing.Setting.PreDraw drawProj2 = (sb, drawColor) =>
             {
-                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink * 0.5f,Color.MediumPurple,factor) with { A = 0});
+                SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.Purple, factor) with { A = 0});
                 return false;
             };
             Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time);
@@ -125,6 +126,11 @@ namespace MyMod.Content.ModProj
             preAtk: new() // 攻击前
             {
                 PreTime = 3, // 前摇时间
+                OnChange = (_) =>
+                {
+                    Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
+                    SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
+                }
             },
             postAtk: new() // 攻击后
             {
@@ -157,6 +163,11 @@ namespace MyMod.Content.ModProj
             preAtk: new() // 攻击前
             {
                 PreTime = 3, // 前摇时间
+                OnChange = (_) =>
+                {
+                    Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
+                    SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
+                }
             },
             postAtk: new() // 攻击后
             {
@@ -183,6 +194,11 @@ namespace MyMod.Content.ModProj
             preAtk: new() // 攻击前
             {
                 PreTime = 3, // 前摇时间
+                OnChange = (_) =>
+                {
+                    Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
+                    SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
+                }
             },
             postAtk: new() // 攻击后
             {
@@ -219,7 +235,7 @@ namespace MyMod.Content.ModProj
             postAtk: new() // 攻击后
             {
                 PostMaxTime = 60, // 后摇最大时间
-                PostAtkTime = 30, // 后摇切换时间
+                PostAtkTime = 10, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
                 SwingTime = 5, // 挥舞时间
@@ -263,12 +279,12 @@ namespace MyMod.Content.ModProj
                 PostAtkTime = 2, // 后摇切换时间
             }, onAtk: new() // 攻击时
             {
-                SwingTime = 4, // 挥舞时间
+                SwingTime = 10, // 挥舞时间
                 TimeChange = swingChange, // 时间变化函数
                 OnHit = onHitEffect
             }, SwingHelper, Player);
 
-            noUse.AddSkill(ChangeSlash); // 蓄力技能
+            noUse.AddSkill(ChangeSlash).AddSkill(ChangeSlash); // 蓄力技能
             noUse.AddSkill(SwingUp).AddSkill(SwingAcross).AddSkill(SwingDown).AddSkill(Spurt).AddSkill(SwingUp); // 挥舞连段
             CurrentSkill = noUse; // 切换技能为不使用时候的技能
         }
