@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMod.Content.ModProj;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,10 @@ namespace MyMod.Content.Items
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            if (type == ProjectileID.Bullet) // 射出去火药子弹
+            {
+                type = ModContent.ProjectileType<MyFirstBulletProj>(); // 射出去的是MyFirstBulletProj
+            }
             // 射击函数，这里是重写的，主要是为了添加一些额外的功能
             // 这里我们射出去三连发
             // 等会调试时候我们会改为散弹效果

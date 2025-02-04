@@ -15,7 +15,6 @@ namespace MyMod.Content.Items
             // Tooltip.SetDefault("在击中NPC时有4%概率额外造成对方最大生命1%的伤害");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;//旅途模式复制条件
         }
-
         public override void SetDefaults()
         {
             Item.damage = 12; // 弹药伤害是和武器叠加作用的，不要设置的太高
@@ -31,7 +30,7 @@ namespace MyMod.Content.Items
             Item.shootSpeed = 10f; // 子弹速度直接取决于弹药
             Item.ammo = AmmoID.Bullet; // 这个弹药属于哪类弹药，这里我们写子弹类。
                                        //原版的弹药类有：
-            List<int> list = new List<int>()
+            List<int> list = new()
             {
                 AmmoID.None,//不使用弹药
 				AmmoID.Bullet,//子弹
