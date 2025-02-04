@@ -16,7 +16,7 @@ namespace MyMod.Content.Items
         public override void SetDefaults()
         {
             //以下是武器物品的基本属性
-            Item.damage = 155;//物品的基础伤害
+            Item.damage = 175;//物品的基础伤害
             Item.crit = 10;//物品的暴击率
             Item.DamageType = DamageClass.Melee;//物品的伤害类型
             Item.width = 40;//物品以掉落物形式存在的碰撞箱宽度

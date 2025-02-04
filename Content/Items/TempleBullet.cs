@@ -11,7 +11,6 @@ namespace MyMod.Content.Items
     {
         public override void SetStaticDefaults()
         {
-
             // DisplayName.SetDefault("神庙子弹");
             // Tooltip.SetDefault("在击中NPC时有4%概率额外造成对方最大生命1%的伤害");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;//旅途模式复制条件

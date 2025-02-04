@@ -137,6 +137,16 @@ Items: {
 		DisplayName: My Skills Item
 		Tooltip: ""
 	}
+
+	LightingAxe: {
+		DisplayName: Lighting Axe
+		Tooltip: ""
+	}
+
+	ThirdGun: {
+		DisplayName: Third Gun
+		Tooltip: ""
+	}
 }
 
 NPCs: {

@@ -76,7 +76,7 @@ namespace MyMod.Content.ModProj
                 SwingHelper = new(Projectile, 16, TextureAssets.Item[SpawnItem.type]);
                 Projectile.scale = Player.GetAdjustedItemScale(SpawnItem);
                 Projectile.Size = SpawnItem.Size * Projectile.scale;
-                SwingHelper.DrawTrailCount = 4;
+                SwingHelper.DrawTrailCount = 4; // 绘制拖尾的次数
                 IDParis = new();
                 SkillsParis = new();
                 //SwingLength = Projectile.Size.Length();
@@ -135,19 +135,19 @@ namespace MyMod.Content.ModProj
             NoUse noUse = new(Player, SwingHelper, this)
             {
                 Length = Projectile.Size.Length()
-            };
+            }; // 玩家拿在手上不使用的时候
 
             SwingHelper_GeneralSwing.Setting.PreDraw drawProj = (sb, drawColor) =>
                             {
                                 SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.Purple, factor) with { A = 0 } * factor * 3);
                                 return false;
-                            };
+                            }; // 绘制弹幕
             SwingHelper_GeneralSwing.Setting.PreDraw drawProj2 = (sb, drawColor) =>
             {
                 SwingHelper.Swing_Draw_ItemAndTrailling(drawColor, TextureAssets.Extra[201].Value, (factor) => Color.Lerp(Color.LightPink, Color.Purple, factor) with { A = 0});
                 return false;
             };
-            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time);
+            Func<float, float> swingChange = (time) => MathHelper.SmoothStep(0, 1f, time); // 缓动函数
             Action<NPC, NPC.HitInfo, int> onHitEffect = (target, hit, damage) =>
             {
                 for (int i = -30; i <= 30; i++)
@@ -158,9 +158,9 @@ namespace MyMod.Content.ModProj
                     //dust = Dust.NewDustPerfect(target.Center, DustID.CrystalPulse, Projectile.velocity.SafeNormalize(default) * i * 0.5f, 100, Color.Purple, 0.8f);
                     //dust.noGravity = true;
                 }
-            };
+            }; // 击中效果
 
-            SwingHelper_GeneralSwing SwingUp = new(this,
+            SwingHelper_GeneralSwing SwingUp = new(this, // 上斩
             setting: new() // 设置
             {
                 SwingLenght = Projectile.Size.Length(),// 挥舞长度
@@ -199,7 +199,7 @@ namespace MyMod.Content.ModProj
                 }
             }, SwingHelper, Player);
 
-            SwingHelper_GeneralSwing SwingAcross = new(this,
+            SwingHelper_GeneralSwing SwingAcross = new(this, // 横斩
             setting: new() // 设置
             {
                 SwingLenght = Projectile.Size.Length(),// 挥舞长度
@@ -232,7 +232,8 @@ namespace MyMod.Content.ModProj
                 TimeChange = swingChange, // 时间变化函数
                 OnHit = onHitEffect
             }, SwingHelper, Player);
-            SwingHelper_GeneralSwing SwingDown = new(this,
+
+            SwingHelper_GeneralSwing SwingDown = new(this, // 下挥
             setting: new() // 设置
             {
                 SwingLenght = Projectile.Size.Length(),// 挥舞长度
@@ -266,7 +267,7 @@ namespace MyMod.Content.ModProj
                 OnHit = onHitEffect
             }, SwingHelper, Player);
 
-            SwingHelper_GeneralSwing Spurt = new(this,
+            SwingHelper_GeneralSwing Spurt = new(this, // 突刺
             setting: new() // 设置
             {
                 SwingLenght = Projectile.Size.Length(),// 挥舞长度
@@ -300,7 +301,7 @@ namespace MyMod.Content.ModProj
                 OnHit = onHitEffect
             }, SwingHelper, Player);
 
-            SwingHelper_GeneralSwing ChangeSlash = new(this,
+            SwingHelper_GeneralSwing ChangeSlash = new(this, // 蓄力斩
             setting: new() // 设置
             {
                 SwingLenght = Projectile.Size.Length(),// 挥舞长度
@@ -319,15 +320,15 @@ namespace MyMod.Content.ModProj
                 {
                     if (Swing.setting.ChangeCondition()) // 蓄力
                     {
-                        if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                        if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI,多人用
                             return;
                         Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                         SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
-                        if (Projectile.ai[1] > 2) // 蓄力2帧
+                        if (Projectile.ai[1] > 2) // 每蓄力2帧
                         {
                             Projectile.ai[1] = 0;
                             if (Projectile.damage < Projectile.originalDamage * 2)
-                                Projectile.damage++;
+                                Projectile.damage++; // 增加1点伤害
                         }
                     }
                 }

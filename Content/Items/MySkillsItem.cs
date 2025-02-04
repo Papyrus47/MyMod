@@ -33,15 +33,16 @@ namespace MyMod.Content.Items
         }
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
+            // 成长物品
             if (NPC.downedSlimeKing) // 击败史莱姆王
             {
-                damage.Base++;
-                damage += 0.1f;
+                damage.Base++; // 基础面板+1
+                damage += 0.1f; // 攻击力+10%
             }
             if(NPC.downedBoss1) // 击败克眼
             {
-                damage.Base++;
-                damage += 0.5f;
+                damage.Base++; // 基础面板+1
+                damage += 0.5f; // 攻击力+50%
             }
         }
         public override void HoldItem(Player player)
