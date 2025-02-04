@@ -195,6 +195,7 @@ Projectiles: {
 	// RenderDistort.DisplayName: Render Distort
 	// RenderGap.DisplayName: Render Gap
 	// MySkillsProj.DisplayName: My Skills Proj
+	// MyFirstBulletProj.DisplayName: My First Bullet Proj
 }
 
 // DamageClasses.FristDamageClass.DisplayName: Frist Damage Class
