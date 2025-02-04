@@ -2,6 +2,7 @@
 using MyMod.Content.ModProj.General;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,7 +20,42 @@ namespace MyMod.Content.ModProj
         public Player Player;
         public SwingHelper SwingHelper;
         public List<ProjSkill_Instantiation> OldSkills { get; set; }
-        public ProjSkill_Instantiation CurrentSkill { get; set; }
+        public ProjSkill_Instantiation CurrentSkill
+        {
+            get
+            {
+                return SkillsParis[ID];
+            }
+            set
+            {
+                if (!IDParis.ContainsKey(value))
+                {
+                    string name = value.GetType().Name;
+                    int i = 0;
+                    while (true)
+                    {
+                        i++;
+                        if (!SkillsParis.ContainsKey(name))
+                        {
+                            name += i.ToString();
+                            if (IDParis.ContainsValue(name))
+                            {
+                                name += (i++).ToString();
+                                continue;
+                            }
+                            break;
+                        }
+                    }
+                    IDParis.Add(value, name);
+                    SkillsParis.Add(name, value);
+                }
+                ID = IDParis[value];
+            }
+        }
+        public string ID { get; set; }
+        public Dictionary<ProjSkill_Instantiation, string> IDParis { get; set; }
+        public Dictionary<string, ProjSkill_Instantiation> SkillsParis { get; set; }
+
         public override void SetDefaults()
         {
             Projectile.ownerHitCheck = true; // 弹幕检查是否隔墙
@@ -41,6 +77,8 @@ namespace MyMod.Content.ModProj
                 Projectile.scale = Player.GetAdjustedItemScale(SpawnItem);
                 Projectile.Size = SpawnItem.Size * Projectile.scale;
                 SwingHelper.DrawTrailCount = 4;
+                IDParis = new();
+                SkillsParis = new();
                 //SwingLength = Projectile.Size.Length();
                 //Main.projFrames[Type] = TheUtility.GetItemFrameCount(SpawnItem);
                 Init();
@@ -58,6 +96,17 @@ namespace MyMod.Content.ModProj
             Player.ResetMeleeHitCooldowns();
             IBasicSkillProj basicSkillProj = this;
             basicSkillProj.SwitchSkill();
+        }
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            SwingHelper.SendData(writer);
+            (this as IBasicSkillProj).SendData(writer);
+        }
+        
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            SwingHelper.RendData(reader);
+            (this as IBasicSkillProj).ReceiveData(reader);
         }
         public override bool ShouldUpdatePosition() => false;
         public override bool? CanDamage() => CurrentSkill.CanDamage();
@@ -128,6 +177,8 @@ namespace MyMod.Content.ModProj
                 PreTime = 3, // 前摇时间
                 OnChange = (_) =>
                 {
+                    if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                        return;
                     Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                     SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
                 }
@@ -165,6 +216,8 @@ namespace MyMod.Content.ModProj
                 PreTime = 3, // 前摇时间
                 OnChange = (_) =>
                 {
+                    if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                        return;
                     Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                     SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
                 }
@@ -196,6 +249,8 @@ namespace MyMod.Content.ModProj
                 PreTime = 3, // 前摇时间
                 OnChange = (_) =>
                 {
+                    if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                        return;
                     Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                     SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
                 }
@@ -228,6 +283,8 @@ namespace MyMod.Content.ModProj
                 PreTime = 3, // 前摇时间
                 OnChange = (_) =>
                 {
+                    if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                        return;
                     Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                     SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
                 }
@@ -262,6 +319,8 @@ namespace MyMod.Content.ModProj
                 {
                     if (Swing.setting.ChangeCondition()) // 蓄力
                     {
+                        if (Player.whoAmI != Main.myPlayer) // 其他玩家不处理这个AI
+                            return;
                         Player.ChangeDir((Main.MouseWorld.X - Player.Center.X > 0).ToDirectionInt());
                         SwingHelper.SetRotVel(Player.direction == 1 ? (Main.MouseWorld - Player.Center).ToRotation() : -(Player.Center - Main.MouseWorld).ToRotation()); // 朝向
                         if (Projectile.ai[1] > 2) // 蓄力2帧

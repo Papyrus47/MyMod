@@ -198,6 +198,7 @@ namespace MyMod.Content.ModProj.General
             Projectile.damage = Projectile.originalDamage;
             Projectile.hide = false;
             SwingHelper.SetRotVel(0);
+            Projectile.netUpdate = true;
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) => SwingHelper.GetColliding(targetHitbox);
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
