@@ -38,6 +38,11 @@ namespace MyMod.Content.Items
             Item.noMelee = true;
             Item.noUseGraphic = true;
         }
+        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
+        {
+            line.Font
+            return base.PreDrawTooltipLine(line, ref yOffset);
+        }
         public override void PostDrawTooltip(ReadOnlyCollection<DrawableTooltipLine> lines)
         {
             foreach (DrawableTooltipLine line in lines)
@@ -49,6 +54,7 @@ namespace MyMod.Content.Items
                     CustomVertexInfo[] customVertexInfos = new CustomVertexInfo[4]; // 4个顶点
 
                     GraphicsDevice gd = Main.instance.GraphicsDevice; // 获得GraphicsDevice
+                    
                     break;
                 }
             }

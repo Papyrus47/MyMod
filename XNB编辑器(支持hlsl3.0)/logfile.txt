@@ -159,3 +159,9 @@ Message at 2023/9/15 20:28:41: Compiling DistortShader.xnb
 Message at 2023/9/15 20:48:00: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
 Message at 2023/9/15 20:48:00: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
 Message at 2023/9/15 20:48:00: Compiling DistortShader.xnb
+Message at 2025/2/5 13:21:35: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/2/5 13:21:35: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/2/5 13:21:35: Compiling DistortShader.xnb
+Message at 2025/2/5 13:21:50: Importing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/2/5 13:21:50: Processing DistortShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/2/5 13:21:50: Compiling DistortShader.xnb

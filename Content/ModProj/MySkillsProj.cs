@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 
 namespace MyMod.Content.ModProj
@@ -158,6 +159,7 @@ namespace MyMod.Content.ModProj
                     //dust = Dust.NewDustPerfect(target.Center, DustID.CrystalPulse, Projectile.velocity.SafeNormalize(default) * i * 0.5f, 100, Color.Purple, 0.8f);
                     //dust.noGravity = true;
                 }
+                Main.instance.CameraModifiers.Add(new PunchCameraModifier(Projectile.Center,Projectile.velocity.SafeNormalize(default),3f,0.2f,2));
             }; // 击中效果
 
             SwingHelper_GeneralSwing SwingUp = new(this, // 上斩
@@ -331,7 +333,8 @@ namespace MyMod.Content.ModProj
                                 Projectile.damage++; // 增加1点伤害
                         }
                     }
-                }
+                },
+                OnChange = (_) => Main.instance.CameraModifiers.Add(new PunchCameraModifier(Projectile.Center,Projectile.velocity.SafeNormalize(default),9f,0.2f,2))
             },
             postAtk: new() // 攻击后
             {
