@@ -32,14 +32,22 @@ namespace MyMod.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe().Register(); // 注册配方 空手合成
+
+            CreateRecipe().AddRecipeGroup("MyMod.AnyIronBar", 15).Register(); // 注册配方 15个任意金属合成
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Generic) += 0.1f; // 提升玩家伤害10%
+            // statModifier.Additive 获得加算数值
+            // statModifier.Multiplicativ 获得乘算数值
+
             player.statLifeMax2 += 100; // 增加玩家最大生命值100
             player.statDefense.AdditiveBonus += 0.1f; // 提升玩家护甲10%
+            // AdditiveBonus专门处理加算的
             player.accRunSpeed *= 1.3f; // 增加玩家最大速度30%
-            if (hideVisual)
+            // 不用加算的原因是：
+            // 1+0.3 = 1.3,所以你直接乘以1.3就行了
+            if (hideVisual) // 这个为true即为隐藏饰品
             {
                 // 隐藏饰品时,额外提升最大生命值100，增加护甲10%，提升最大速度20%
                 player.statLifeMax2 += 100;
