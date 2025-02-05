@@ -519,6 +519,7 @@ namespace MyMod.Common
                 _drawCorrections = _drawCorrections,
                 VelScale = VelScale,
                 VisualRotation = VisualRotation,
+                DrawTrailCount = DrawTrailCount
             };
             return sh;
         }
