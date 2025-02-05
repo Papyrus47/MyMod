@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using MyMod.Buffs;
+using MyMod.Content.Buffs;
 using MyMod.Content.DamageClasses;
 using Terraria;
 using Terraria.DataStructures;

@@ -18,6 +18,11 @@ Buffs: {
 		DisplayName: Player Debuff
 		Description: Mods.MyMod.Buffs.PlayerDebuff.Description
 	}
+
+	PowerUp: {
+		DisplayName:力量提升
+		Description: 力量提升
+	}
 }
 
 Items: {
@@ -206,4 +211,4 @@ Projectiles: {
 }
 
 // DamageClasses.FristDamageClass.DisplayName: Frist Damage Class
-AnyIronBar:任意铁锭
+AnyIronBar: 任意铁锭

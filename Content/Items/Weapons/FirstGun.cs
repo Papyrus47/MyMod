@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MyMod.Content.Buffs;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -99,7 +100,7 @@ namespace MyMod.Content.Items.Weapons
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            player.AddBuff(ModContent.BuffType<Buffs.FirstBuff>(), 200);
+            player.AddBuff(ModContent.BuffType<FirstBuff>(), 200);
             //本函数用于在武器执行发射弹幕时的操作，返回false可阻止武器原本的发射。true则保留。
             position += velocity.RotatedBy(0.15).SafeNormalize(default) * 80; // 修改发射子弹的位置,+velocity 是为发射位置修正
             for (int i = -2; i <= 2; i++)

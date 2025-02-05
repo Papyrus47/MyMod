@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MyMod.Content.Buffs;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -41,7 +42,7 @@ namespace MyMod.Content.Items.Weapons
             Item.useAmmo = AmmoID.None;//为其他AmmoID时可以消耗指定弹药
             Item.mana = 20;//为大于零的数时每次使用会消耗魔力值
             Item.scale = 1.2f;//物品使用动画的大小
-            Item.buffType = ModContent.BuffType<Buffs.MinionBuff>();//使用时为玩家赋予召唤物的BUFF
+            Item.buffType = ModContent.BuffType<MinionBuff>();//使用时为玩家赋予召唤物的BUFF
 
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

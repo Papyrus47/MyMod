@@ -6,6 +6,10 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\Buffs\FirstBuff.png" />
+    <None Remove="Content\Buffs\MinionBuff.png" />
+    <None Remove="Content\Buffs\NPCdebuff.png" />
+    <None Remove="Content\Buffs\PlayerDebuff.png" />
     <None Remove="Content\ModProj\MySkillsProj.png" />
     <None Remove="Localization\zh-Hans_Mods.MyMod.hjson" />
   </ItemGroup>

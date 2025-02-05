@@ -194,12 +194,15 @@ namespace MyMod.Content.ModProj.General
             Projectile.ai[0] = Projectile.ai[1] = Projectile.ai[2] = 0;
             SkillTimeOut = false;
             SwingHelper.SetRotVel(0);
+            Projectile.originalDamage = Player.GetWeaponDamage(Player.HeldItem);
+            Projectile.damage = Projectile.originalDamage;
             TheUtility.ResetProjHit(Projectile);
         }
         public override void OnSkillDeactivate()
         {
             Projectile.ai[0] = Projectile.ai[1] = Projectile.ai[2] = 0;
             SkillTimeOut = false;
+            Projectile.originalDamage = Player.GetWeaponDamage(Player.HeldItem);
             Projectile.damage = Projectile.originalDamage;
             Projectile.hide = false;
             SwingHelper.SetRotVel(0);

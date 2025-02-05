@@ -1,10 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using MyMod.Buffs;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.Graphics.Effects;
+﻿using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace MyMod.Content.Items.Weapons
 {

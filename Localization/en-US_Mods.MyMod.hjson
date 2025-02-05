@@ -18,6 +18,11 @@ Buffs: {
 		DisplayName: Player Debuff
 		Description: Mods.MyMod.Buffs.PlayerDebuff.Description
 	}
+
+	PowerUp: {
+		DisplayName: Power Up
+		Description: Power Up
+	}
 }
 
 Items: {
@@ -198,4 +203,4 @@ Projectiles: {
 }
 
 DamageClasses.FristDamageClass.DisplayName: Frist Damage Class
-AnyIronBar:Any Iron Bar
+AnyIronBar: Any Iron Bar
