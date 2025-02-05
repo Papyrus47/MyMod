@@ -30,6 +30,9 @@ namespace MyMod.Content.ModProj.General
             swingHelper.ProjFixedPos(player.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, player.velocity.X / 10f),-Length * 0.02f);
             swingHelper.SetSwingActive(); // 激活挥舞
             Projectile.spriteDirection = player.direction; // 弹幕贴图朝向与玩家一致
+            player.fullRotationOrigin = player.Size * 0.5f;
+            player.fullRotation = player.velocity.X * 0.05f;
+            player.legRotation = -player.fullRotation;
             swingHelper.SwingAI(Length, player.direction, (player.velocity.X / 10f) * player.direction - MathHelper.PiOver2);
         }
         public override bool ActivationCondition() => true; // 无条件激活

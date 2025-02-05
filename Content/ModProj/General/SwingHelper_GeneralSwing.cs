@@ -26,7 +26,7 @@ namespace MyMod.Content.ModProj.General
             /// </summary>
             public Action<SwingHelper_GeneralSwing> OnStart;
             /// <summary>
-            /// 发射在改变时候
+            /// 在改变时候
             /// </summary>
             public Action<SwingHelper_GeneralSwing> OnChange;
         }
@@ -53,6 +53,10 @@ namespace MyMod.Content.ModProj.General
             /// 即将命中的时候
             /// </summary>
             public ModifyHitNPC ModifyHit;
+            /// <summary>
+            /// 在改变时候
+            /// </summary>
+            public Action<SwingHelper_GeneralSwing> OnChange;
         }
         public class PostAtk
         {
@@ -162,6 +166,7 @@ namespace MyMod.Content.ModProj.General
                     {
                         Projectile.ai[1] = 0;
                         Projectile.ai[0]++;
+                        onAtk.OnChange?.Invoke(this);
                         break;
                     }
                     onAtk.OnUse?.Invoke(this);
