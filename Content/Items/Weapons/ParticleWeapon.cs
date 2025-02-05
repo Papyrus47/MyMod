@@ -7,7 +7,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     public class ParticleWeapon : ModItem //伤害数字类跳字示范
     {

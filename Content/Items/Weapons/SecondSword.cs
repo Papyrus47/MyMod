@@ -7,7 +7,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     /// <summary>
     /// 演示了伤害类型修改

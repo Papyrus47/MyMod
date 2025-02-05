@@ -5,14 +5,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using MyMod.Content.ModProj;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
-    public class RayWeapon : ModItem
+    public class MyRod : ModItem
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("激光弹幕法杖"); //为你的武器命名
-            // Tooltip.SetDefault("这是一个激光弹幕的示例");//这是武器的提示语，利用\n进行换行
+            // DisplayName.SetDefault("手持弹幕法杖"); //为你的武器命名
+            // Tooltip.SetDefault("这是一个手持弹幕的示例");//这是武器的提示语，利用\n进行换行
         }
         public override void SetDefaults()
         {
@@ -25,7 +25,7 @@ namespace MyMod.Content.Items
             Item.useTime = 5;//物品一次使用所经历的时间（以帧为单位）(正常情况1秒60帧)
 
             //这里用我们制作的手持弹幕ID
-            Item.shoot = ModContent.ProjectileType<DeathRay>();//物品发射的弹幕ID
+            Item.shoot = ModContent.ProjectileType<MyRodProj>();//物品发射的弹幕ID
 
             Item.shootSpeed = 24f;//物品发射的弹幕速度（像素/帧）（一个物块长16像素）
             Item.useAnimation = 5;//物品播放使用动画所经历的时间

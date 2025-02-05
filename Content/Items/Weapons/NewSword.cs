@@ -6,7 +6,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     public class NewSword : ModItem//进阶剑,本剑旨在教学制作一把更自由的近战武器（弹幕）(有刀光教学)
     {

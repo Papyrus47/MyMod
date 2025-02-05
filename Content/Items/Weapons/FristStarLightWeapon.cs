@@ -1,7 +1,7 @@
 ﻿using MyMod.Content.ModProj;
 using Terraria.ID;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     public class FristStarLightWeapon : ModItem
     {

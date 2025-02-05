@@ -1,5 +1,5 @@
 ﻿using System;
-using MyMod.Content.Items;
+using MyMod.Content.Items.Weapons;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;

@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     public class FirstGun : ModItem
     {

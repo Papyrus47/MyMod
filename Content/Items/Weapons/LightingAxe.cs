@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI.Chat;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     /// <summary>
     /// 小天使做的
@@ -77,7 +77,7 @@ namespace MyMod.Content.Items
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            
+
         }
     }
 }

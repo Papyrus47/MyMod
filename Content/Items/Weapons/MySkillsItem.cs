@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using MyMod.Content.ModProj;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.Items.Weapons
 {
     /// <summary>
     /// 由小天使制作的技能表物品
@@ -39,7 +39,7 @@ namespace MyMod.Content.Items
                 damage.Base++; // 基础面板+1
                 damage += 0.1f; // 攻击力+10%
             }
-            if(NPC.downedBoss1) // 击败克眼
+            if (NPC.downedBoss1) // 击败克眼
             {
                 damage.Base++; // 基础面板+1
                 damage += 0.5f; // 攻击力+50%
