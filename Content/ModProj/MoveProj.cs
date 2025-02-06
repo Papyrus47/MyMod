@@ -48,46 +48,49 @@ namespace MyMod.Content.ModProj
 
             //首先是匀速运动,在无任何AI的情况下，弹幕速度是不会变的，所以匀速运动不需要修改速度
             Projectile.rotation = Projectile.velocity.ToRotation();//让贴图方向等于速度方向
-
+                                                                   // 求一个x = 1，y = 1的向量的长度
+                                                                   // 勾股定理
+                                                                   // 根号（x 的 平方 + y 的平方） = 向量长度
+                                                                   // Projectile.velocity.Length(); 获取向量的长度
             #region 速度赋予向量
             //下面介绍直接对速度赋予向量的效果
-            /* if (Projectile.timeLeft == 90)
-             {
-                 Projectile.velocity = new Vector2(0, 10);//当倒计时剩1.5s的时候，速度变为竖直向下10像素/帧
-             }
-             if (Projectile.timeLeft == 60)
-             {
-                 Projectile.velocity = new Vector2(-10, 0);//当倒计时剩1s的时候，速度变为水平向左10像素/帧
-             }
-             if (Projectile.timeLeft == 30)
-             {
-                 Projectile.velocity = new Vector2(10, -10);//当倒计时剩0.5s的时候，速度变为右上方45°，10倍根号二像素每帧
-             }*/
+            //if (Projectile.timeLeft == 1210)
+            //{
+            //    Projectile.velocity = new Vector2(0, 10);
+            //}
+            //if (Projectile.timeLeft == 1200)
+            //{
+            //    Projectile.velocity = new Vector2(-10, 0);
+            //}
+            //if (Projectile.timeLeft == 1100)
+            //{
+            //    Projectile.velocity = new Vector2(10, -10);
+            //}
             #endregion
             #region 加减速运动
             //下面介绍加速运动和减速运动
             //首先是直接成倍率的加减速
             //Projectile.velocity = Projectile.velocity * 0.95f;//速度每帧减少5%，一秒之后速度只剩原来的4%了
             //其次是具体增加数值的加减速，这个反而更复杂一点
-            //Projectile.velocity = (Projectile.velocity.Length() + 0.1f) * Projectile.velocity.SafeNormalize(Vector2.Zero);
+            //Projectile.velocity = (Projectile.velocity.Length() + 0.05f) * Projectile.velocity.SafeNormalize(Vector2.Zero);
             //速率数值即速度向量.length()，我们先获取速率再加一，再乘以单位速度,就能让速率每帧 + 1
 
             #endregion
             #region 曲线运动
             //好了，下面介绍弹幕速度进行偏转后产生的曲线运动吧
-            // Projectile.velocity = Projectile.velocity.RotatedBy(0.034f);//速度每帧顺时针偏转0.034弧度
+            //Projectile.velocity = Projectile.velocity.RotatedBy(0.034f);//速度每帧顺时针偏转0.034弧度
 
             #endregion
             #region 折线运动
             //如果我们只在特定的时间节点偏转速度，那么就能出现折线运动
-            /* if(Projectile.timeLeft % 20 == 9)//每20帧中的第十帧执行（0是第一帧）
-             {
-                 Projectile.velocity = Projectile.velocity.RotatedBy(0.8f);//顺时针偏转0.8弧度
-             }
-             if(Projectile.timeLeft % 20 == 19)//每20帧中的第二十帧执行（0是第一帧）
-             {
-                 Projectile.velocity = Projectile.velocity.RotatedBy(-0.8f);//逆时针偏转0.8弧度
-             }*/
+            //if (Projectile.timeLeft % 20 == 9)//每20帧中的第十帧执行（0是第一帧）
+            //{
+            //    Projectile.velocity = Projectile.velocity.RotatedBy(0.8f);//顺时针偏转0.8弧度
+            //}
+            //if (Projectile.timeLeft % 20 == 19)//每20帧中的第二十帧执行（0是第一帧）
+            //{
+            //    Projectile.velocity = Projectile.velocity.RotatedBy(-0.8f);//逆时针偏转0.8弧度
+            //}
             #endregion
             #region 正弦函数运动
             //由于函数运动需要一个原点作为参照，所以我们新建一个二维向量字段
@@ -193,7 +196,7 @@ namespace MyMod.Content.ModProj
             if (Math.Abs(Projectile.velocity.Y) > MaxSpeed)//如果纵向速度超越最大值，则回到最大值
                 Projectile.velocity.Y = MaxSpeed * Math.Sign(Projectile.velocity.Y);*/
 
-            //第三种：插值渐进运动   插值渐进运动是一种在短时间内快速稳定移动到目标处的运动，适合召唤物强制回归等行为
+            ////第三种：插值渐进运动   插值渐进运动是一种在短时间内快速稳定移动到目标处的运动，适合召唤物强制回归等行为
             Vector2 targetPos = Main.MouseWorld;//为了更好演示，我选择鼠标作为被追目标
             Vector2 pos = Vector2.Lerp(Projectile.Center, targetPos, 0.1f);//第三个空是第一个空转变到第二个空的比率
             //通常填0.1以内即可，0.1以上的话太快了

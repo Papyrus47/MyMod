@@ -157,6 +157,11 @@ Items: {
 		DisplayName: Frist Star Light Weapon
 		Tooltip: ""
 	}
+
+	FristSpurtWeapon: {
+		DisplayName: Frist Spurt Weapon
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -200,6 +205,7 @@ Projectiles: {
 	MyFirstBulletProj.DisplayName: My First Bullet Proj
 	MyLightingProj.DisplayName: My Lighting Proj
 	FristStarLightWeaponProj.DisplayName: Frist Star Light Weapon Proj
+	FristSpurtWeaponProj.DisplayName: Frist Spurt Weapon Proj
 }
 
 DamageClasses.FristDamageClass.DisplayName: Frist Damage Class

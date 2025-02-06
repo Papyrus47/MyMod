@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace MyMod.Content.Items
+namespace MyMod.Content.ModProj
 {
     /// <summary>
     /// 我的雷电弹幕
@@ -30,7 +30,7 @@ namespace MyMod.Content.Items
         }
         public override void AI()
         {
-            if(Projectile.timeLeft % 20 == 0) // 每20次更新添加两个顶点
+            if (Projectile.timeLeft % 20 == 0) // 每20次更新添加两个顶点
             {
                 float factor = Projectile.timeLeft / 200f;
                 Vector2 pos = new(Projectile.ai[0], Projectile.ai[1]);
@@ -49,13 +49,13 @@ namespace MyMod.Content.Items
                 //    customVertexInfos.RemoveAt(0);
                 //    customVertexInfos.RemoveAt(0);
                 //}
-                customVertexInfos.Add(new(Projectile.Center + (Projectile.velocity.SafeNormalize(default).RotatedBy(MathHelper.PiOver2) * Projectile.width * factor) - Main.screenPosition, Color.LightBlue with { A = 0 }, new Vector3(factor, 0, 0)));
-                customVertexInfos.Add(new(Projectile.Center + (Projectile.velocity.SafeNormalize(default).RotatedBy(-MathHelper.PiOver2) * Projectile.width * factor) - Main.screenPosition, Color.LightBlue with { A = 0 }, new Vector3(factor, 1, 0)));
+                customVertexInfos.Add(new(Projectile.Center + Projectile.velocity.SafeNormalize(default).RotatedBy(MathHelper.PiOver2) * Projectile.width * factor - Main.screenPosition, Color.LightBlue with { A = 0 }, new Vector3(factor, 0, 0)));
+                customVertexInfos.Add(new(Projectile.Center + Projectile.velocity.SafeNormalize(default).RotatedBy(-MathHelper.PiOver2) * Projectile.width * factor - Main.screenPosition, Color.LightBlue with { A = 0 }, new Vector3(factor, 1, 0)));
             }
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if(customVertexInfos.Count > 2)
+            if (customVertexInfos.Count > 2)
             {
                 var gd = Main.graphics.GraphicsDevice;
                 gd.Textures[0] = TextureAssets.MagicPixel.Value;

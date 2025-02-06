@@ -9,10 +9,6 @@ namespace MyMod.Content.ModProj
     public class FristStarLightWeaponProj : ModProjectile
     {
         public override string Texture => $"Terraria/Images/Item_{ItemID.None}";
-        public SoundStyle Sound => SoundID.Item1 with
-        {
-            MaxInstances = 10 //最大实例数
-        }; // 使用时的声音
         public override void SetDefaults()
         {
             Projectile.usesLocalNPCImmunity = true;
@@ -85,7 +81,12 @@ namespace MyMod.Content.ModProj
         {
             for (float num8 = 0f; num8 <= 1f; num8 += 0.05f)
             {
-                float num9 = Utils.Remap(num8, 0f, 1f, 1f, 5f);
+                float num9 = Utils.Remap(num8,// 将这个值从一个范围映射到另一个范围
+                    0f, // 原范围最小值
+                    1f, // 原范围最大值
+                    1f, // 目标范围最小值
+                    5f, // 目标范围最大值
+                    true); // 是否截断
                 Rectangle rectangle = projHitbox;
                 Vector2 vector5 = Projectile.velocity.SafeNormalize(Vector2.Zero) * Projectile.width * num9 * Projectile.scale;
                 rectangle.Offset((int)vector5.X, (int)vector5.Y);

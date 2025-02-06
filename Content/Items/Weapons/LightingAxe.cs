@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyMod.Content.ModProj;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
