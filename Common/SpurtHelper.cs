@@ -10,8 +10,8 @@ namespace MyMod.Common
     /// </summary>
     public class SpurtHelper : ICloneable
     {
-        public delegate void DrawSpurt(SpurtHelper spurt, SpriteBatch sb);
-        public static void ASpurtDraw_Proj(SpurtHelper spurt, SpriteBatch sb)
+        public delegate void DrawSpurt(SpurtHelper spurt, SpriteBatch sb, params object[] args);
+        public static void ASpurtDraw_Proj(SpurtHelper spurt, SpriteBatch sb, params object[] args)
         {
             if (spurt.Owner is not Projectile)
                 return;
@@ -31,7 +31,20 @@ namespace MyMod.Common
             sb.Draw(tex, drawPos,drawRect, Lighting.GetColor((spurt.SpurtPos / 16).ToPoint()), projectile.rotation, drawSize / 2f, projectile.scale, SpriteEffects.None, 0f);
             #endregion
         }
-        public static void MoreSpurtDraw_Proj(SpurtHelper spurt, SpriteBatch sb)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spurt"></param>
+        /// <param name="sb"></param>
+        /// <param name="args">
+        /// <see cref="float"/>参数1：设置偏离角
+        /// <para>
+        /// <see cref="float"/>参数2：设置中心偏移距离
+        /// </para>      <para>
+        /// <see cref="float"/>参数3：设置角度修正
+        /// </para>
+        /// </param>
+        public static void MoreSpurtDraw_Proj(SpurtHelper spurt, SpriteBatch sb, params object[] args)
         {
             if (spurt.Owner is not Projectile)
                 return;
@@ -40,14 +53,17 @@ namespace MyMod.Common
             Vector2 drawSize = new Vector2(spurt.Size.X, spurt.Size.Y);
             Main.instance.LoadProjectile(927);
             Main.instance.LoadProjectile(projectile.type);
+            float rotDiff = args.Length > 0 ? (float)args[0] : 0.2f;
+            float centerOffset = args.Length > 1 ? (float)args[1] : 20f;
+            float angleFix = args.Length > 2 ? (float)args[2] : 0.8f;
             #region 绘制突刺            
             for (int i = Main.rand.Next(2, 4); i > 0; i--)
             {
                 Texture2D tex2 = TextureAssets.Projectile[927].Value;
                 Vector2 scale = new Vector2(spurt.SpurtLenght / tex2.Width, 1f) * projectile.scale * Main.rand.NextFloat(0.2f, 1f);
-                float rotation = projectile.rotation - MathHelper.PiOver4 + Main.rand.NextFloatDirection() * 0.2f;
-                Vector2 position = drawPos + spurt.SpurtVel * 20 + Main.rand.NextVector2Circular(40, 40);
-                rotation -= MathHelper.WrapAngle(rotation - (drawPos + spurt.SpurtVel * spurt.SpurtLenght - position).ToRotation()) * 0.8f;
+                float rotation = projectile.rotation - MathHelper.PiOver4 + Main.rand.NextFloatDirection() * rotDiff;
+                Vector2 position = drawPos + spurt.SpurtVel * 20 + Main.rand.NextVector2Circular(centerOffset, centerOffset);
+                rotation -= MathHelper.WrapAngle(rotation - (drawPos + spurt.SpurtVel * spurt.SpurtLenght - position).ToRotation()) * angleFix;
                 sb.Draw(tex2, position, null, projectile.GetAlpha(Color.White), rotation, new Vector2(tex2.Width / 4f, tex2.Height / 2f), scale, SpriteEffects.None, 0f);
             }
             #endregion

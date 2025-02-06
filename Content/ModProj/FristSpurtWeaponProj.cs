@@ -109,7 +109,7 @@ namespace MyMod.Content.ModProj
             if (spurtHelper == null)
             {
                 spurtHelper = new(Projectile);
-                spurtHelper.Change(400, Projectile.velocity,100,Projectile.Size,20,SpurtHelper.MoreSpurtDraw_Proj);
+                spurtHelper.Change(400, Projectile.velocity,100,Projectile.Size,20,(spurt,sb, _) => SpurtHelper.MoreSpurtDraw_Proj(spurt,sb,0.6f,40f,0.7f));
             }
             spurtHelper.Update(Projectile.Center, player.direction,Projectile.velocity);
             if((int)(spurtHelper.Time % ((float)spurtHelper.TimeMax / spurtHelper.DmgCount)) == 0)
