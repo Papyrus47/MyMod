@@ -96,64 +96,69 @@ namespace MyMod.Content.ModProj
             //由于函数运动需要一个原点作为参照，所以我们新建一个二维向量字段
             //我们用的最多的函数运动就是正弦运动了
             //这里写一个简单的水平向右的正弦运动
-            /* if(coord == Vector2.Zero)//弹幕生成的那一刻，这个字段默认为0向量，我们赋予它弹幕此时的坐标
-             {
-                 Projectile.velocity *= 0;//这时候我们不需要速度
-                 coord = Projectile.Center;
-             }
-             else //之后coord已经被赋予弹幕的初始坐标了，此时就可以让弹幕动起来了
-             {
-                 timer++;//计时器每帧+1
-                 float height = 250;//定义正弦运动上下摆动幅度
-                 float timeLoop = 30f;//定义正弦运动的周期
-                 float Xspeed = 15f;//定义弹幕在横向的速度
-                 float w = MathHelper.TwoPi / timeLoop;//用2Π除以周期得到角速度
-                 Vector2 position = coord + //math.sin这玩意是double，必须强制转换成float
-                     new Vector2(timer * Xspeed,//随着时间X轴坐标不断增加
-                     height * (float)Math.Sin(timer * w));//Y轴坐标随着时间上下摆动
-                 Projectile.velocity = position - Projectile.Center;//最后再让弹幕速度一直朝着函数图像走
-             }*/
+            //if (coord == Vector2.Zero)//弹幕生成的那一刻，这个字段默认为0向量，我们赋予它弹幕此时的坐标
+            //{
+            //    Projectile.velocity *= 0;//这时候我们不需要速度
+            //    coord = Projectile.Center;
+            //}
+            //else //之后coord已经被赋予弹幕的初始坐标了，此时就可以让弹幕动起来了
+            //{
+            //    timer++;//计时器每帧+1
+            //    float height = 250;//定义正弦运动上下摆动幅度
+            //    float timeLoop = 30f;//定义正弦运动的周期
+            //    float Xspeed = 15f;//定义弹幕在横向的速度
+            //    float w = MathHelper.TwoPi / timeLoop;//用2Π除以周期得到角速度
+            //    Vector2 position = coord + //math.sin这玩意是double，必须强制转换成float
+            //        new Vector2(timer * Xspeed,//随着时间X轴坐标不断增加
+            //        height * (float)Math.Sin(timer * w));//Y轴坐标随着时间上下摆动
+            //    Projectile.velocity = position - Projectile.Center;//最后再让弹幕速度一直朝着函数图像走
+            //}
+            //float t = MathF.Sin(Projectile.timeLeft * 0.5f) * 0.2f; // 简易三角函数运动
+            //Projectile.velocity = Projectile.velocity.RotatedBy(t);
             #endregion
             #region 极坐标思想
             //上面的正弦运动很好，但是我并不想只让他水平向右，那该怎么办呢?
-            /*if (coord == Vector2.Zero)//弹幕生成的那一刻，这个字段默认为0向量，我们赋予它弹幕此时的坐标
-            {
-                startVel = Projectile.velocity.ToRotation();//先预存这个速度方向
-                Projectile.velocity *= 0;//但是我们不能让弹幕有初速度了
-                coord = Projectile.Center;
-            }
-            else //之后coord已经被赋予弹幕的初始坐标了，此时就可以让弹幕动起来了
-            {
-                timer++;//计时器每帧+1
-                float height = 60;//定义正弦运动上下摆动幅度
-                float timeLoop = 30f;//定义正弦运动的周期
-                float Xspeed = 15f;//定义弹幕在横向的速度
-                float w = MathHelper.TwoPi / timeLoop;//用2Π除以周期得到角速度
+            //if (coord == Vector2.Zero)//弹幕生成的那一刻，这个字段默认为0向量，我们赋予它弹幕此时的坐标
+            //{
+            //    startVel = Projectile.velocity.ToRotation();//先预存这个速度方向
+            //    Projectile.velocity *= 0;//但是我们不能让弹幕有初速度了
+            //    coord = Projectile.Center;
+            //}
+            //else //之后coord已经被赋予弹幕的初始坐标了，此时就可以让弹幕动起来了
+            //{
+            //    timer++;//计时器每帧+1
+            //    float height = 60;//定义正弦运动上下摆动幅度
+            //    float timeLoop = 30f;//定义正弦运动的周期
+            //    float Xspeed = 15f;//定义弹幕在横向的速度
+            //    float w = MathHelper.TwoPi / timeLoop;//用2Π除以周期得到角速度
 
-                Vector2 pos = new Vector2(timer * Xspeed,//随着时间X轴坐标不断增加
-                    height * (float)Math.Sin(timer * w));//Y轴坐标随着时间上下摆动
-                pos = pos.RotatedBy(startVel);//重点：让整个函数图像偏转成初速度的方向
-                Vector2 position = coord + pos;//再加回预存的初始位置
-                Projectile.velocity = position - Projectile.Center;//最后再让弹幕速度一直朝着函数图像走
-            }*/
+            //    Vector2 pos = new Vector2(timer * Xspeed,//随着时间X轴坐标不断增加
+            //        height * (float)Math.Sin(timer * w));//Y轴坐标随着时间上下摆动
+            //    pos = pos.RotatedBy(startVel);//重点：让整个函数图像偏转成初速度的方向
+            //    Vector2 position = coord + pos;//再加回预存的初始位置
+            //    Projectile.velocity = position - Projectile.Center;//最后再让弹幕速度一直朝着函数图像走
+            //}
 
             #endregion
             #region 圆周运动及椭圆运动
             //那么，学习完极坐标，想必你对二维向量有一个更好的认识了
             //接下来就让我介绍如何制作围绕某点的圆周运动吧
-            /*
-            timer++;//我们还是需要一个计时器的，用来控制角度
-            float rotation = timer * 0.25f;//随便乘以个小数作为角度使用
-            float Range = 150; //圆的半径
-            Vector2 originPos = player.Center;//（以玩家中心为原点为例）
-            Vector2 circlePos = rotation.ToRotationVector2() * Range;//ToRotVec2方法可以将角度转单位向量，再乘以长度
-                                                                     //就可以得到圆周上的点坐标了
-           //那么椭圆呢？其实利用的是参数方程的思想，先让圆周点的坐标的X或者Y减少一定倍率
-              //再进行向量偏转，最后和原点坐标相加，即可得到任意方向椭圆
-            circlePos.Y *= 0.5f;//我这里将圆的Y轴减少50%，形成一个椭圆
-            circlePos = circlePos.RotatedBy(-0.5f);//整体偏转0.5弧度试试看
-            Projectile.velocity = circlePos + originPos - Projectile.Center;//再对速度赋值
-            */
+
+            //timer++;//我们还是需要一个计时器的，用来控制角度
+            //float rotation = timer * 0.25f;//随便乘以个小数作为角度使用
+            //float Range = 150; //圆的半径
+            //Vector2 originPos = player.Center;//（以玩家中心为原点为例）
+            //Vector2 circlePos = rotation.ToRotationVector2() * Range;//ToRotVec2方法可以将角度转单位向量，再乘以长度
+            //                                                         //就可以得到圆周上的点坐标了
+            //                                                         //那么椭圆呢？其实利用的是参数方程的思想，先让圆周点的坐标的X或者Y减少一定倍率
+            //                                                         //再进行向量偏转，最后和原点坐标相加，即可得到任意方向椭圆
+            //circlePos.Y *= 0.5f;//我这里将圆的Y轴减少50%，形成一个椭圆
+            //circlePos = circlePos.RotatedBy(MathHelper.PiOver4);//整体偏转0.5弧度试试看
+            //Projectile.velocity = circlePos + originPos - Projectile.Center;//再对速度赋值
+
+            //Vector2 vel = (Projectile.Center - player.Center).SafeNormalize(Vector2.UnitX).RotatedBy(0.1); // 这里先获取玩家指向弹幕的向量，并标准化然后偏移
+            //Vector2 pos = player.Center + vel * 400; // 获得弹幕的应该在的位置
+            //Projectile.velocity = (pos - Projectile.Center) * 0.3f; // 追击运动
             #endregion
             //至此，基础运动就都介绍完了
             //下面，我将介绍游戏中更广泛使用的一些运动方法
@@ -196,11 +201,11 @@ namespace MyMod.Content.ModProj
             if (Math.Abs(Projectile.velocity.Y) > MaxSpeed)//如果纵向速度超越最大值，则回到最大值
                 Projectile.velocity.Y = MaxSpeed * Math.Sign(Projectile.velocity.Y);*/
 
-            ////第三种：插值渐进运动   插值渐进运动是一种在短时间内快速稳定移动到目标处的运动，适合召唤物强制回归等行为
-            Vector2 targetPos = Main.MouseWorld;//为了更好演示，我选择鼠标作为被追目标
-            Vector2 pos = Vector2.Lerp(Projectile.Center, targetPos, 0.1f);//第三个空是第一个空转变到第二个空的比率
-            //通常填0.1以内即可，0.1以上的话太快了
-            Projectile.velocity = pos - Projectile.Center;//赋予速度
+            //第三种：插值渐进运动   插值渐进运动是一种在短时间内快速稳定移动到目标处的运动，适合召唤物强制回归等行为
+            //Vector2 targetPos = Main.MouseWorld;//为了更好演示，我选择鼠标作为被追目标
+            //Vector2 pos = Vector2.Lerp(Projectile.Center, targetPos, 0.1f);//第三个空是第一个空转变到第二个空的比率
+            ////通常填0.1以内即可，0.1以上的话太快了
+            //Projectile.velocity = pos - Projectile.Center;//赋予速度
             #endregion
         }
 
@@ -219,7 +224,8 @@ namespace MyMod.Content.ModProj
 
             //要制作拖尾，首先要建立一个for循环语句，从0一直走到轨迹末端
             //这里我们介绍一个能产生高亮叠加绘制的办法（A=0）
-            Color MyColor = Color.White; MyColor.A = 0;//让A=0是为了能直接叠加颜色
+            Color MyColor = Color.White; 
+            MyColor.A = 0;//让A=0是为了能直接叠加颜色
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Type]; i++)//循环上限小于轨迹长度
             {
                 float factor = 1 - (float)i / ProjectileID.Sets.TrailCacheLength[Type];

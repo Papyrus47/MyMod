@@ -28,5 +28,12 @@ namespace MyMod.Content.Buffs//命名空间要和文件夹路径一样
             player.lifeRegen = -115;//扣血BUFF实现原理就是这样,一点liferegen代表每秒恢复或损失1/2生命值
                                     //player.moveSpeed -= 1.5f;//减速，具体数值需要你自己尝试
         }
+        // return false以使用原版效果，即再次被添加时重置时间为新的时间，即参数中给的time（如果剩的比新的短）
+        // return true以禁用原版效果，这里的改动是再次添加时让buff剩余时间增加这个上buff的时间
+        public override bool ReApply(Player player, int time, int buffIndex)
+        {
+            player.buffTime[buffIndex] += time;
+            return true;
+        }
     }
 }
